@@ -255,3 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+/* ── Load Site-Wide Search ───────────────────────────────────── */
+(function () {
+    var s = document.createElement('script');
+    s.src = 'assets/js/search.js';
+    s.defer = true;
+    document.head.appendChild(s);
+})();
