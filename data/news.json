@@ -5,10 +5,8 @@
     "category": "Research",
     "date": "2025-10-15",
     "featured": true,
-    "image": "assets/images/news/news1.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
     "summary": "Kingston Engineering College inaugurated its state-of-the-art AI & Robotics Research Lab today. The lab is equipped with cutting-edge robotics kits, GPU workstations, and collaborative research spaces.",
-    "url": "cse_research.html",
     "tags": ["Research", "AI", "Lab"]
   },
   {
@@ -17,10 +15,8 @@
     "category": "Achievement",
     "date": "2025-10-10",
     "featured": true,
-    "image": "assets/images/news/news2.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80",
     "summary": "KEC achieves prestigious NIRF ranking in the 201–300 band for the Engineering category — a testament to our commitment to quality education and research excellence.",
-    "url": "about_accreditation.html",
     "tags": ["Ranking", "NIRF", "Achievement"]
   },
   {
@@ -29,10 +25,8 @@
     "category": "Event",
     "date": "2025-10-05",
     "featured": false,
-    "image": "assets/images/news/news3.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
     "summary": "Register now for KEC's annual tech fest celebrating innovation and creativity. Events include hackathons, paper presentations, robotics challenges, and cultural programmes.",
-    "url": "cse_events.html",
     "tags": ["Tech Fest", "Events", "Students"]
   },
   {
@@ -41,10 +35,8 @@
     "category": "Placement",
     "date": "2025-09-28",
     "featured": true,
-    "image": "assets/images/news/news4.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
     "summary": "KEC records its highest ever placement rate with top MNCs including TCS, Wipro, Infosys, Cognizant, and HCL participating in campus recruitment drives.",
-    "url": "placement_report.html",
     "tags": ["Placement", "Career", "Students"]
   },
   {
@@ -53,10 +45,8 @@
     "category": "Research",
     "date": "2025-09-20",
     "featured": false,
-    "image": "assets/images/news/news5.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80",
     "summary": "KEC hosted ICEET-2025, an international conference on emerging engineering technologies, attracting researchers and practitioners from 12 countries.",
-    "url": "cse_research.html",
     "tags": ["Conference", "Research", "International"]
   },
   {
@@ -65,10 +55,8 @@
     "category": "Sports",
     "date": "2025-09-15",
     "featured": false,
-    "image": "assets/images/news/news6.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&q=80",
     "summary": "Annual sports day witnessed enthusiastic participation from all 15 departments. CSE won the overall championship trophy for the third consecutive year.",
-    "url": "ugc_ps_sports.html",
     "tags": ["Sports", "Events", "Students"]
   },
   {
@@ -77,10 +65,8 @@
     "category": "Infrastructure",
     "date": "2025-09-10",
     "featured": false,
-    "image": "assets/images/news/news7.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&q=80",
     "summary": "A new boys' hostel block with 400 beds, modern amenities, Wi-Fi, gym, and a reading room was inaugurated by the Chairman. Accommodation is now available for all outstation students.",
-    "url": "ugc_ps_hostel.html",
     "tags": ["Hostel", "Infrastructure", "Facilities"]
   },
   {
@@ -89,10 +75,8 @@
     "category": "Academic",
     "date": "2025-09-05",
     "featured": false,
-    "image": "assets/images/news/news8.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=600&q=80",
     "summary": "Students from the Aeronautical and Mechanical Engineering departments visited ISRO facilities in Sriharikota, gaining hands-on insight into India's space programme.",
-    "url": "facilities_event_gallery.html",
     "tags": ["ISRO", "Industry Visit", "Students"]
   },
   {
@@ -101,10 +85,8 @@
     "category": "Alumni",
     "date": "2025-08-28",
     "featured": false,
-    "image": "assets/images/news/news9.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80",
     "summary": "Annual alumni meet brought together graduates from 20+ batches. Distinguished alumni shared their journeys and pledged scholarships for meritorious students.",
-    "url": "alumni.html",
     "tags": ["Alumni", "Events", "Community"]
   },
   {
@@ -113,10 +95,8 @@
     "category": "Event",
     "date": "2025-08-20",
     "featured": false,
-    "image": "assets/images/news/news10.jpg",
     "fallback_image": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80",
     "summary": "Cultural extravaganza Utsav 2025 showcased diverse talents of KEC students across dance, music, drama, and fine arts, with participation from 25 colleges.",
-    "url": "facilities_event_gallery.html",
     "tags": ["Cultural", "Events", "Students"]
   },
   {
@@ -125,10 +105,8 @@
     "category": "Achievement",
     "date": "2025-08-10",
     "featured": true,
-    "image": "",
     "fallback_image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80",
     "summary": "KEC signed a Memorandum of Understanding with Microsoft to provide students access to Azure cloud certifications, AI/ML tools, and co-working opportunities.",
-    "url": "about_mou.html",
     "tags": ["MoU", "Microsoft", "Placement"]
   },
   {
@@ -137,10 +115,8 @@
     "category": "Admission",
     "date": "2025-07-01",
     "featured": false,
-    "image": "",
     "fallback_image": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80",
     "summary": "Applications are now open for B.E., B.Tech., M.E., MBA and MCA programmes for the academic year 2026-27. Apply through TNEA or the college's direct admission process.",
-    "url": "admission.html",
     "tags": ["Admission", "2026", "Apply"]
   }
 ]

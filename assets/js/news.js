@@ -32,7 +32,8 @@ const KEC_NEWS = (() => {
     }
 
     function imgSrc(item) {
-        return item.image || item.fallback_image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80';
+        // Always use fallback_image directly to avoid 404 requests
+        return item.fallback_image || 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80';
     }
 
     /* ── Fetch ─────────────────────────────────────────────── */
@@ -56,7 +57,6 @@ const KEC_NEWS = (() => {
                 <div class="news-card">
                     <div class="news-card-img-wrap" style="position:relative;overflow:hidden;height:180px;">
                         <img src="${imgSrc(item)}"
-                             onerror="this.src='${item.fallback_image || ''}'"
                              class="news-card-img" alt="${item.title}"
                              style="width:100%;height:100%;object-fit:cover;">
                         <span class="news-cat-badge" style="background:${catColor(item.category)}">${item.category}</span>
@@ -65,7 +65,7 @@ const KEC_NEWS = (() => {
                         <span class="news-date"><i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}</span>
                         <h3 class="news-card-title">${item.title}</h3>
                         <p class="news-card-excerpt">${item.summary.slice(0, 100)}…</p>
-                        <a href="${item.url || '#'}" class="news-read-more">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                        <a href="news-detail.html?id=${item.id}" class="news-read-more">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a>
                     </div>
                 </div>
             </div>`).join('');
@@ -142,10 +142,9 @@ const KEC_NEWS = (() => {
 
             grid.innerHTML = filtered.map((item, idx) => `
                 <article class="blog-news-card${item.featured ? ' featured' : ''}" data-aos="fade-up" data-aos-delay="${(idx % 3) * 80}">
-                    <a href="${item.url || '#'}" class="blog-news-img-link">
+                    <a href="news-detail.html?id=${item.id}" class="blog-news-img-link">
                         <div class="blog-news-img-wrap">
                             <img src="${imgSrc(item)}"
-                                 onerror="this.src='${item.fallback_image || ''}'"
                                  alt="${item.title}" loading="lazy">
                             <span class="news-cat-badge" style="background:${catColor(item.category)}">${item.category}</span>
                             ${item.featured ? '<span class="news-featured-badge">Featured</span>' : ''}
@@ -154,14 +153,14 @@ const KEC_NEWS = (() => {
                     <div class="blog-news-body">
                         <span class="news-date"><i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}</span>
                         <h2 class="blog-news-title">
-                            <a href="${item.url || '#'}">${item.title}</a>
+                            <a href="news-detail.html?id=${item.id}">${item.title}</a>
                         </h2>
                         <p class="blog-news-excerpt">${item.summary}</p>
                         <div class="blog-news-footer">
                             <div class="news-tags">
                                 ${(item.tags || []).slice(0,3).map(t => `<span class="news-tag">${t}</span>`).join('')}
                             </div>
-                            <a href="${item.url || '#'}" class="news-read-more">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a>
+                            <a href="news-detail.html?id=${item.id}" class="news-read-more">Read More <i class="fa-solid fa-arrow-right text-xs"></i></a>
                         </div>
                     </div>
                 </article>`).join('');
