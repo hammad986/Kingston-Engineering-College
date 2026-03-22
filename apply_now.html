@@ -510,6 +510,16 @@
                             </select>
                         </div>
                     </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" class="form-control" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" class="form-control" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+                    </div>
                     <button type="button" class="btn-submit" onclick="nextStep(2)">Next Step &rarr;</button>
                 </div>
 
@@ -572,16 +582,36 @@
     </div>
 </div>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="assets/js/form-handler.js"></script>
 <script>
+    var _currentStep = 1;
+
+    function validateStep(stepNum) {
+        var panel = document.getElementById('step-panel-' + stepNum);
+        if (!panel) return true;
+        var fields = panel.querySelectorAll('input[required], select[required], textarea[required], input[name="email"], input[name="phone"]');
+        var valid = true, first = null;
+        fields.forEach(function(f) {
+            if (typeof KingstonForms !== 'undefined') {
+                if (!KingstonForms.validateField(f)) { valid = false; if (!first) first = f; }
+            } else {
+                if (f.required && !f.value.trim()) { valid = false; if (!first) first = f; }
+            }
+        });
+        if (first) { first.focus(); first.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        return valid;
+    }
+
     function nextStep(step) {
+        // Validate current step before advancing forward
+        if (step > _currentStep && !validateStep(_currentStep)) return;
+
         document.getElementById('step-panel-1').style.display = 'none';
         document.getElementById('step-panel-2').style.display = 'none';
         document.getElementById('step-panel-3').style.display = 'none';
-        
         document.getElementById('step-panel-' + step).style.display = 'block';
-        
+
+        _currentStep = step;
+
         var steps = [1, 2, 3];
         steps.forEach(function(s) {
             var el = document.getElementById('step' + s);
@@ -592,7 +622,7 @@
 
         if(step > 1) document.querySelector('.step-line').className = 'step-line active';
         else document.querySelector('.step-line').className = 'step-line';
-        
+
         if(step > 2) document.getElementById('line2').className = 'step-line active';
         else if(document.getElementById('line2')) document.getElementById('line2').className = 'step-line';
     }
@@ -673,6 +703,8 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="assets/js/form-handler.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
