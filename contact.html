@@ -670,9 +670,15 @@
             easing: 'ease-out-cubic'
         });
 
-        document.getElementById('navToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
+        var navToggle = document.getElementById('navToggle');
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                var navMenu = document.getElementById('navMenu');
+                if (navMenu) {
+                    navMenu.classList.toggle('active');
+                }
+            });
+        }
     </script>
 </body>
 

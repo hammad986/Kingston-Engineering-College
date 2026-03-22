@@ -984,16 +984,25 @@
         }
 
         // Mobile Menu
-        document.getElementById('navToggle').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
+        var navToggle = document.getElementById('navToggle');
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                var navMenu = document.getElementById('navMenu');
+                if (navMenu) {
+                    navMenu.classList.toggle('active');
+                }
+            });
+        }
 
         // Search on Enter key
-        document.getElementById('faqSearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
+        var faqSearch = document.getElementById('faqSearch');
+        if (faqSearch) {
+            faqSearch.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
     </script>
 </body>
 
