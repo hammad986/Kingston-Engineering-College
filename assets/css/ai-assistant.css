@@ -248,4 +248,116 @@
         width: 100%;
         text-align: center;
     }
+
+    .ai-suggestions-row {
+        gap: 6px;
+    }
+
+    .ai-suggestion-chip {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+
+    .ai-result-cards {
+        gap: 6px;
+    }
+}
+
+/* ── Suggestion Chips ────────────────────────────────────── */
+.ai-suggestions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 2px 0 4px 44px; /* indent to align with bot bubble */
+    animation: aiMsgIn 0.35s ease-out forwards;
+    opacity: 0;
+}
+
+.ai-suggestions-row.animate {
+    animation: aiMsgIn 0.4s ease-out 0.15s forwards;
+    opacity: 0;
+}
+
+.ai-suggestion-chip {
+    background: #fff;
+    border: 1.5px solid #c5d3e8;
+    color: #003366;
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s, transform 0.15s;
+    white-space: nowrap;
+}
+
+.ai-suggestion-chip:hover {
+    background: #e8f0fb;
+    border-color: #003366;
+    transform: translateY(-1px);
+}
+
+/* ── Search Fallback Cards ───────────────────────────────── */
+.ai-result-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.ai-result-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #f0f5ff;
+    border: 1.5px solid #c5d3e8;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.18s, border-color 0.18s, transform 0.15s, box-shadow 0.15s;
+}
+
+.ai-result-card:hover {
+    background: #dce8ff;
+    border-color: #003366;
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(0,51,102,0.12);
+    text-decoration: none;
+    color: inherit;
+}
+
+.ai-result-card-inner {
+    flex: 1;
+    min-width: 0;
+}
+
+.ai-result-card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #003366;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ai-result-card-desc {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ai-result-card-cat {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #0056b3;
+    background: #d6e8ff;
+    border-radius: 12px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }

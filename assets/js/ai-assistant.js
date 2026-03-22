@@ -1,15 +1,47 @@
 /**
- * Kingston Engineering College – AI Assistant v2
- * Improved: weighted scoring, context memory, search fallback,
- * typing indicator, Hindi/Hinglish support
+ * Kingston Engineering College – AI Assistant v3
+ * Features: weighted scoring, context memory, search fallback,
+ * typing indicator, Hindi/Hinglish support, follow-up suggestions,
+ * improved fallback cards, chat persistence (localStorage)
  */
 
 class AIAssistant {
     constructor() {
         this.knowledgeBase = null;
         this.searchIndex = null;
-        this.intentMemory = [];   // last 3 intent IDs
+        this.intentMemory = [];
         this.MAX_MEMORY = 3;
+        this.STORAGE_KEY_FP = 'kec_chat_fullpage';
+        this.STORAGE_KEY_WG = 'kec_chat_widget';
+        this.MAX_STORED = 60; // max message objects in localStorage
+
+        /* ── Per-intent follow-up suggestions ────────────────── */
+        this.followUps = {
+            greeting:        [{ text: '📋 Admissions', q: 'Tell me about admissions' }, { text: '💰 Fees', q: 'What is the fee structure?' }, { text: '📊 Placements', q: 'Tell me about placements' }],
+            admission:       [{ text: '💰 Fee Structure', q: 'What is the fee structure?' }, { text: '🏆 Scholarships', q: 'Tell me about scholarships' }, { text: '📞 Contact Admission', q: 'How to contact Kingston?' }],
+            fees:            [{ text: '🏆 Scholarships', q: 'Tell me about scholarships' }, { text: '📋 Admission Process', q: 'Tell me about admissions' }, { text: '💳 Pay Online', q: '' }],
+            placement:       [{ text: '💼 Internships', q: 'Tell me about internships' }, { text: '🏭 Industry Connect', q: 'Tell me about industry connect' }, { text: '🎓 Higher Education', q: 'Tell me about higher education' }],
+            contact:         [{ text: '📋 Admissions', q: 'Tell me about admissions' }, { text: '🗺️ Campus Tour', q: 'Tell me about campus tour' }],
+            departments:     [{ text: '💻 CSE Details', q: 'Tell me about CSE department' }, { text: '📋 Admissions', q: 'Tell me about admissions' }, { text: '📊 Placements', q: 'Tell me about placements' }],
+            hostel:          [{ text: '🚌 Transport', q: 'Tell me about transport and bus routes' }, { text: '🏫 Facilities', q: 'What facilities are available?' }, { text: '💰 Hostel Fees', q: 'What is the fee structure?' }],
+            scholarship:     [{ text: '📋 Admission Process', q: 'Tell me about admissions' }, { text: '💰 Fee Structure', q: 'What is the fee structure?' }],
+            naac:            [{ text: '🏛️ About Kingston', q: 'Tell me about Kingston Engineering College' }, { text: '⭐ IQAC', q: 'Tell me about IQAC' }],
+            facilities:      [{ text: '📚 Library', q: 'Tell me about library' }, { text: '⚽ Sports', q: 'Tell me about sports' }, { text: '🏠 Hostel', q: 'Tell me about hostel facilities' }],
+            library:         [{ text: '🏫 Other Facilities', q: 'What facilities are available?' }, { text: '🔬 Research', q: 'Tell me about research at Kingston' }],
+            sports:          [{ text: '🎭 Clubs', q: 'Tell me about clubs and activities' }, { text: '🏠 Hostel', q: 'Tell me about hostel facilities' }],
+            transport:       [{ text: '📞 Contact Us', q: 'How to contact Kingston?' }, { text: '🏠 Hostel', q: 'Tell me about hostel facilities' }],
+            clubs:           [{ text: '🔬 Research', q: 'Tell me about research at Kingston' }, { text: '📊 Placements', q: 'Tell me about placements' }],
+            research:        [{ text: '🏛️ Departments', q: 'What departments are available?' }, { text: '🎓 Higher Education', q: 'Tell me about higher education' }],
+            cse:             [{ text: '📊 CSE Placements', q: 'Tell me about CSE placements' }, { text: '👥 CSE Faculty', q: 'Tell me about CSE faculty' }, { text: '📋 Admission', q: 'Tell me about admissions' }],
+            alumni:          [{ text: '📊 Placements', q: 'Tell me about placements' }, { text: '🏛️ About Kingston', q: 'Tell me about Kingston Engineering College' }],
+            higher_education:[{ text: '📋 Admissions', q: 'Tell me about admissions' }, { text: '📊 Placements', q: 'Tell me about placements' }],
+            internship:      [{ text: '📊 Placements', q: 'Tell me about placements' }, { text: '💼 Industry Connect', q: 'Tell me about industry connect' }],
+            iqac:            [{ text: '🏅 NAAC', q: 'Tell me about NAAC accreditation' }, { text: '🏛️ About Kingston', q: 'Tell me about Kingston Engineering College' }],
+            about:           [{ text: '🏛️ Departments', q: 'What departments are available?' }, { text: '🗺️ Campus Tour', q: 'Tell me about campus tour' }, { text: '📋 Admissions', q: 'Tell me about admissions' }],
+            thanks:          [{ text: '📋 Admissions', q: 'Tell me about admissions' }, { text: '📊 Placements', q: 'Tell me about placements' }],
+            goodbye:         [],
+        };
+
         this.init();
     }
 
@@ -20,7 +52,7 @@ class AIAssistant {
             this.loadSearchIndex()
         ]);
         this.attachEventListeners();
-        this.displayWelcomeMessage();
+        this.restoreOrWelcome();
         this.autoFocusInput();
     }
 
@@ -72,7 +104,7 @@ class AIAssistant {
             });
         });
 
-        // Quick action buttons
+        // Quick action buttons (static)
         document.querySelectorAll('.ai-quick-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const query = btn.getAttribute('data-query');
@@ -98,9 +130,14 @@ class AIAssistant {
                 }
             });
         }
-
         if (close && widget) {
             close.addEventListener('click', () => widget.classList.remove('active'));
+        }
+
+        // Clear chat button (fullpage only)
+        const clearBtn = document.getElementById('ai-clear-chat');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearChat('fullpage'));
         }
     }
 
@@ -116,15 +153,59 @@ class AIAssistant {
         if (input) { input.value = text; input.focus(); }
     }
 
-    /* ── Welcome message ─────────────────────────────────────── */
-    displayWelcomeMessage() {
+    /* ── Chat Persistence ────────────────────────────────────── */
+    storageKey(type) {
+        return type === 'fullpage' ? this.STORAGE_KEY_FP : this.STORAGE_KEY_WG;
+    }
+
+    saveMessage(html, sender, type) {
+        try {
+            const key = this.storageKey(type);
+            const history = JSON.parse(localStorage.getItem(key) || '[]');
+            history.push({ html, sender, ts: Date.now() });
+            // Keep only the last MAX_STORED messages
+            if (history.length > this.MAX_STORED) history.splice(0, history.length - this.MAX_STORED);
+            localStorage.setItem(key, JSON.stringify(history));
+        } catch (e) { /* storage full or private mode */ }
+    }
+
+    restoreHistory(type) {
+        try {
+            const key = this.storageKey(type);
+            const history = JSON.parse(localStorage.getItem(key) || '[]');
+            if (!history.length) return false;
+
+            history.forEach(({ html, sender }) => {
+                this.displayMessage(html, sender, false, type, false); // no save again
+            });
+            return true;
+        } catch (e) { return false; }
+    }
+
+    clearChat(type) {
+        try { localStorage.removeItem(this.storageKey(type)); } catch (e) {}
+        const containerId = type === 'fullpage' ? 'fullpage-messages' : 'ai-messages';
+        const container = document.getElementById(containerId);
+        if (container) container.innerHTML = '';
+        // Re-show welcome
         const intent = this.getIntentById('greeting');
-        if (intent) {
-            this.renderResponse(intent, false, 'fullpage');
-            this.renderResponse(intent, false, 'widget');
-        } else {
-            this.displayMessage("👋 Welcome to Kingston! How can I help you today?", 'bot', false, 'fullpage');
-            this.displayMessage("👋 Welcome to Kingston! How can I help you today?", 'bot', false, 'widget');
+        if (intent) this.renderResponse(intent, false, type);
+        else this.displayMessage("👋 Welcome back! How can I help you?", 'bot', false, type);
+    }
+
+    restoreOrWelcome() {
+        const fpRestored = this.restoreHistory('fullpage');
+        const wgRestored = this.restoreHistory('widget');
+
+        if (!fpRestored) {
+            const intent = this.getIntentById('greeting');
+            if (intent) this.renderResponse(intent, false, 'fullpage');
+            else this.displayMessage("👋 Welcome to Kingston! How can I help you today?", 'bot', false, 'fullpage');
+        }
+        if (!wgRestored) {
+            const intent = this.getIntentById('greeting');
+            if (intent) this.renderResponse(intent, false, 'widget');
+            else this.displayMessage("👋 Welcome to Kingston! How can I help you today?", 'bot', false, 'widget');
         }
     }
 
@@ -144,13 +225,12 @@ class AIAssistant {
         setTimeout(() => {
             this.hideTypingIndicator(type);
             this.processUserMessage(userMessage, type);
-        }, 350 + Math.random() * 200); // 350–550ms realistic delay
+        }, 350 + Math.random() * 200);
     }
 
     processUserMessage(message, type) {
         const normalized = this.normalize(message);
 
-        // Context-aware follow-up
         const contextResponse = this.handleContextualFollowUp(normalized);
         if (contextResponse) {
             this.recordMemory(contextResponse.id);
@@ -158,13 +238,11 @@ class AIAssistant {
             return;
         }
 
-        // Detect best intent
         const intent = this.detectIntent(normalized);
         if (intent) {
             this.recordMemory(intent.id);
             this.renderResponse(intent, true, type);
         } else {
-            // Fallback: search the site index for relevant pages
             this.renderSearchFallback(normalized, type);
         }
     }
@@ -188,9 +266,8 @@ class AIAssistant {
         })).filter(r => r.score > 0);
 
         if (!scores.length) return null;
-
         scores.sort((a, b) => b.score - a.score);
-        return scores[0].intent; // always take highest – no tie failure
+        return scores[0].intent;
     }
 
     scoreIntent(intent, message) {
@@ -199,39 +276,19 @@ class AIAssistant {
 
         for (const kw of keywords) {
             const k = kw.toLowerCase();
-
-            // Exact full-phrase match (highest weight)
             if (message === k) { total += 100; continue; }
-
-            // Contains full keyword as a phrase
-            if (message.includes(k)) {
-                // Bonus for longer keyword matches (more specific)
-                total += 60 + k.length;
-                continue;
-            }
-
-            // All words in the keyword appear in the message
+            if (message.includes(k)) { total += 60 + k.length; continue; }
             const words = k.split(/\s+/);
-            if (words.length > 1 && words.every(w => message.includes(w))) {
-                total += 40;
-                continue;
-            }
-
-            // Single word partial / fuzzy match
-            if (k.length >= 4 && message.includes(k.slice(0, Math.ceil(k.length * 0.75)))) {
-                total += 15;
-            }
+            if (words.length > 1 && words.every(w => message.includes(w))) { total += 40; continue; }
+            if (k.length >= 4 && message.includes(k.slice(0, Math.ceil(k.length * 0.75)))) { total += 15; }
         }
-
         return total;
     }
 
     /* ── Context memory ──────────────────────────────────────── */
     recordMemory(intentId) {
         this.intentMemory.push(intentId);
-        if (this.intentMemory.length > this.MAX_MEMORY) {
-            this.intentMemory.shift();
-        }
+        if (this.intentMemory.length > this.MAX_MEMORY) this.intentMemory.shift();
     }
 
     handleContextualFollowUp(message) {
@@ -241,17 +298,11 @@ class AIAssistant {
         const last = this.intentMemory[this.intentMemory.length - 1];
         if (!last) return null;
 
-        // Contextual follow-up mappings
         const followUp = {
-            'admission': 'fees',
-            'fees': 'scholarship',
-            'placement': 'internship',
-            'departments': 'cse',
-            'cse': 'placement',
-            'hostel': 'transport',
+            'admission': 'fees', 'fees': 'scholarship', 'placement': 'internship',
+            'departments': 'cse', 'cse': 'placement', 'hostel': 'transport',
             'about': 'facilities'
         };
-
         const nextId = followUp[last];
         return nextId ? this.getIntentById(nextId) : null;
     }
@@ -261,18 +312,26 @@ class AIAssistant {
         const fallback = this.knowledgeBase?.fallback;
         const results = this.searchPages(query, 4);
 
-        let html = `<p>${fallback?.message || "Here are some pages that might help:"}</p>`;
+        let html = `<p style="margin:0 0 10px 0;">${fallback?.message || 'Here are some pages that might help:'}</p>`;
 
         if (results.length > 0) {
-            html += `<ul class="ai-points">`;
+            html += `<div class="ai-result-cards">`;
             results.forEach(r => {
-                html += `<li><a href="${r.url}" style="color:#003366;font-weight:600;">${r.title}</a><br><small style="color:#888;">${r.description}</small></li>`;
+                const cat = r.category || 'General';
+                html += `
+                <a href="${r.url}" class="ai-result-card">
+                    <div class="ai-result-card-inner">
+                        <div class="ai-result-card-title">${r.title}</div>
+                        <div class="ai-result-card-desc">${r.description}</div>
+                    </div>
+                    <div class="ai-result-card-cat">${cat}</div>
+                </a>`;
             });
-            html += `</ul>`;
+            html += `</div>`;
         }
 
         if (fallback?.suggestions) {
-            html += `<div class="ai-actions">`;
+            html += `<div class="ai-actions" style="margin-top:12px;">`;
             fallback.suggestions.forEach(sug => {
                 html += `<button class="ai-btn outline" onclick="window.KingstonAI.setInput('${sug.query}'); window.KingstonAI.handleSendMessage('${type}');">${sug.text}</button>`;
             });
@@ -296,13 +355,11 @@ class AIAssistant {
             if (title.includes(q)) score += 60;
             if (kws.includes(q)) score += 40;
             if (desc.includes(q)) score += 20;
-
             words.forEach(w => {
                 if (title.includes(w)) score += 10;
                 if (kws.includes(w)) score += 7;
                 if (desc.includes(w)) score += 3;
             });
-
             return { entry, score };
         }).filter(r => r.score > 0)
           .sort((a, b) => b.score - a.score)
@@ -334,10 +391,50 @@ class AIAssistant {
         }
 
         this.displayMessage(html, 'bot', animated, type);
+
+        // Append smart follow-up suggestion chips after the bubble
+        const chips = this.followUps[intent.id];
+        if (chips && chips.length > 0) {
+            this.renderSuggestionChips(chips, type, animated);
+        }
     }
 
     getIntentById(id) {
         return this.knowledgeBase?.intents?.find(i => i.id === id) || null;
+    }
+
+    /* ── Follow-up suggestion chips ──────────────────────────── */
+    renderSuggestionChips(chips, type, animated) {
+        const containerId = type === 'fullpage' ? 'fullpage-messages' : 'ai-messages';
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const row = document.createElement('div');
+        row.className = `ai-suggestions-row${animated ? ' animate' : ''}`;
+
+        chips.forEach(chip => {
+            const btn = document.createElement('button');
+            btn.className = 'ai-suggestion-chip';
+            btn.textContent = chip.text;
+
+            if (chip.url) {
+                btn.addEventListener('click', () => { window.location.href = chip.url; });
+            } else if (chip.q) {
+                btn.addEventListener('click', () => {
+                    // Remove this chip row once clicked for clean UX
+                    row.remove();
+                    this.setInput(chip.q);
+                    this.handleSendMessage(type);
+                });
+            }
+            row.appendChild(btn);
+        });
+
+        container.appendChild(row);
+        this.scrollToLatest(container);
+
+        // Save chips row html to localStorage too
+        this.saveMessage(row.innerHTML, '__chips__', type);
     }
 
     /* ── Typing indicator ────────────────────────────────────── */
@@ -366,10 +463,37 @@ class AIAssistant {
     }
 
     /* ── Display message ─────────────────────────────────────── */
-    displayMessage(content, sender, animated = true, type = 'fullpage') {
+    displayMessage(content, sender, animated = true, type = 'fullpage', persist = true) {
         const containerId = type === 'fullpage' ? 'fullpage-messages' : 'ai-messages';
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Handle restored chip rows specially
+        if (sender === '__chips__') {
+            const row = document.createElement('div');
+            row.className = 'ai-suggestions-row';
+            row.innerHTML = content;
+            // Re-attach click handlers on restored chips
+            row.querySelectorAll('.ai-suggestion-chip').forEach(btn => {
+                const text = btn.textContent;
+                // Find matching chip query from followUps
+                let foundQ = null;
+                for (const chips of Object.values(this.followUps)) {
+                    const match = chips.find(c => c.text === text);
+                    if (match) { foundQ = match.q; break; }
+                }
+                if (foundQ) {
+                    btn.addEventListener('click', () => {
+                        row.remove();
+                        this.setInput(foundQ);
+                        this.handleSendMessage(type);
+                    });
+                }
+            });
+            container.appendChild(row);
+            this.scrollToLatest(container);
+            return;
+        }
 
         const group = document.createElement('div');
         group.className = `ai-message-group ${sender}${animated ? ' animate' : ''}`;
@@ -388,13 +512,13 @@ class AIAssistant {
         group.appendChild(bubble);
         container.appendChild(group);
         this.scrollToLatest(container);
+
+        if (persist) this.saveMessage(content, sender, type);
     }
 
     scrollToLatest(container) {
         if (!container) return;
-        setTimeout(() => {
-            container.scrollTop = container.scrollHeight;
-        }, 60);
+        setTimeout(() => { container.scrollTop = container.scrollHeight; }, 60);
     }
 }
 
