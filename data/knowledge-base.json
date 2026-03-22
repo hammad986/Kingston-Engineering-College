@@ -4,7 +4,7 @@
     "tagline": "Autonomous | AICTE Approved | NAAC 'A' Grade",
     "phone": "+91-416-2244777",
     "email": "admission@kingston.ac.in",
-    "address": "Timpla Nagar, Trichy, Tamil Nadu",
+    "address": "Chittoor Main Road, Vellore, Tamil Nadu – 632 059",
     "about": "Kingston Engineering College is an autonomous institution approved by AICTE and affiliated to Anna University. We have achieved NAAC 'A' grade and are committed to providing world-class education in engineering and technology."
   },
   "intents": [
@@ -78,7 +78,7 @@
         "Email: admission@kingston.ac.in",
         "Phone: +91-416-2244777",
         "Admin Phone: +91-75400-37999",
-        "Location: Timpla Nagar, Trichy, Tamil Nadu"
+        "Location: Chittoor Main Road, Vellore, Tamil Nadu – 632 059"
       ],
       "actions": [
         {"text": "Contact Us Page", "url": "contact.html"},
