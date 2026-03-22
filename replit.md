@@ -30,3 +30,28 @@ Workflow: "Start application" on port 5000 (webview)
 
 ## Deployment
 Configured as a **static** deployment with `publicDir: "."` (root directory).
+
+## Upgrade Progress
+### Phase 1 — Critical Fixes (COMPLETE)
+- Email typo fixed across 50 files
+- 7 new department pages created
+- 7 missing image references fixed
+- Forms overhauled with EmailJS integration (`assets/js/form-handler.js`)
+
+### Phase 2 — Content Integration (IN PROGRESS)
+- **Homepage (index.html)**: College name corrected, TNEA code updated to 1408, new "Why Choose Kingston" stats section, new "About Kingston" section, footer links fixed, explore campus links fixed, social media links added
+- **COE page (coe.html)**: New page created with examination office details
+- **Pay Online page (pay_online.html)**: Demo payment form with client-side validation
+- **Social media links**: YouTube (UCXc_SY1bMEp6XrcoY9yoodw), Facebook (KingstonEngineeringCollege), Instagram (kaboraofficial), Twitter (KingstonEngClg)
+- **About section pages**: Footer links, social media, copyright year, topbar links all updated across 8 pages
+- **Knowledge base**: Address corrected to "Chittoor Main Road, Vellore, Tamil Nadu – 632 059"
+
+### Key Content Facts
+- **TNEA Code**: 1408
+- **College Name**: Kingston Engineering College (Autonomous)
+- **Trust**: M/S. Duraimurugan Educational Trust
+- **Chairman**: Thiru.D.M. KATHIR ANAND M.B.A (USA)
+- **Principal**: Dr.U.V.Arivazhagu M.E.,Ph.D
+- **Address**: Chittoor Main Road, Vellore, Tamil Nadu – 632 059
+- **Campus**: 11.62 acres, 5km from Katpadi Railway Station
+- **Established**: 2001
