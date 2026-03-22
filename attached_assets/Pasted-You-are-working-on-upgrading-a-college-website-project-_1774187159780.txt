@@ -1,0 +1,130 @@
+You are working on upgrading a college website project.
+
+IMPORTANT CONTEXT:
+I am building an improved version of this official website:
+https://engineering.kingston.ac.in/
+
+Your job is to:
+- Analyze my current project
+- Upgrade it into a clean, structured, fully functional version
+- Reuse content (HTML, PDFs, data) from the reference website where needed
+
+MAIN REQUIREMENT:
+This project must become a complete, production-ready college website.
+
+-------------------------------------
+
+PHASE 0 — BEFORE DOING ANYTHING
+
+1. First, carefully analyze my entire project folder
+2. Understand structure, files, and dependencies
+3. Compare it with the reference website
+
+Then:
+
+👉 Ask me if you have ANY doubts before implementation  
+👉 Then provide a CLEAR step-by-step execution plan  
+
+DO NOT start coding yet.
+
+-------------------------------------
+
+PHASE 1 — CRITICAL FIXES
+
+After I approve the plan, perform:
+
+- Fix broken links (case-sensitive issues, missing pages)
+- Fix missing images (logo, accreditation, etc.)
+- Correct email typo everywhere:
+  admission@kinston.ac.in → admission@kingston.ac.in
+- Remove fake form submissions (alert-based)
+- Add proper validation for all forms
+
+-------------------------------------
+
+PHASE 2 — CONTENT INTEGRATION (VERY IMPORTANT)
+
+You must:
+
+- Use https://engineering.kingston.ac.in/ as reference
+- Improve and update content in:
+
+  1. index.html (Homepage)
+  2. About section (all pages)
+  3. All department pages
+
+- Ensure:
+  - Content is clean and structured
+  - PDFs are properly linked
+  - No duplicate or broken content
+
+-------------------------------------
+
+PHASE 3 — STRUCTURE IMPROVEMENT
+
+- Implement reusable components:
+  header, footer, navbar
+- Load components dynamically using JavaScript
+- Remove duplication across pages
+
+-------------------------------------
+
+PHASE 4 — FEATURE DEVELOPMENT
+
+- Implement site-wide search using JSON
+- Create dynamic news/announcement system (news.json)
+- Improve AI Assistant:
+  - Better intent matching
+  - Accurate responses
+  - Fallback handling
+
+-------------------------------------
+
+PHASE 5 — CLEANUP
+
+- Remove unused files:
+  temp files, raw files, logs, notes
+- Remove Python scripts (not needed in production)
+- Remove duplicate/stub pages
+
+-------------------------------------
+
+PHASE 6 — SEO + PERFORMANCE
+
+- Add:
+  meta tags, Open Graph
+  robots.txt, sitemap.xml
+- Optimize:
+  images, videos, CSS, JS
+- Add lazy loading
+
+-------------------------------------
+
+PHASE 7 — UX IMPROVEMENTS
+
+- Add:
+  404 page
+  Back-to-top button
+  Breadcrumb navigation
+
+-------------------------------------
+
+IMPORTANT RULES:
+
+- Work STEP-BY-STEP (do not do everything at once)
+- After each step:
+  - Show what changes were made
+  - List modified files
+- Do NOT overwrite working code unnecessarily
+- Maintain clean and readable code
+
+-------------------------------------
+
+FINAL INSTRUCTION:
+
+Before implementation:
+👉 Ask doubts (if any)
+👉 Give execution plan
+
+After my approval:
+👉 Start with Phase 1 only
