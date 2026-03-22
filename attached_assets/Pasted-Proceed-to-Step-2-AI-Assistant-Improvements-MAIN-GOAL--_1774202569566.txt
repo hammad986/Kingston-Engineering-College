@@ -1,0 +1,112 @@
+Proceed to Step 2: AI Assistant Improvements.
+
+-------------------------------------
+
+MAIN GOAL:
+
+Build a smart, human-like AI assistant with a professional UI,
+similar to modern AI chatbots used on college or company websites.
+
+-------------------------------------
+
+PART 1 — AI BEHAVIOR (INTELLIGENCE)
+
+1. HUMAN-LIKE RESPONSES:
+- Responses should feel natural and conversational
+- Avoid robotic or repetitive answers
+
+2. HANDLE UNKNOWN QUESTIONS:
+- Never say "I don't know"
+- Instead:
+  - Respond politely
+  - Suggest helpful directions
+  - Use search-index to show relevant links
+
+3. MULTI-LANGUAGE SUPPORT:
+- Handle Hindi, Hinglish, and mixed-language queries
+- Still respond clearly in simple English
+
+4. SMART MATCHING:
+- Use weighted scoring:
+  - exact match > keyword > fuzzy match
+- No tie failure allowed
+
+5. CONTEXT MEMORY:
+- Remember last 3 intents
+- Handle follow-up queries intelligently
+
+6. SEARCH FALLBACK:
+- If no intent match:
+  → Automatically show top 3–5 relevant pages
+
+7. TYPING INDICATOR:
+- Add 300ms delay with typing animation
+
+-------------------------------------
+
+PART 2 — UI IMPROVEMENT (VERY IMPORTANT)
+
+Current chatbot UI is poor and needs a complete upgrade.
+
+1. REDESIGN CHAT UI:
+- Make it look like a modern AI chatbot
+- Clean chat bubbles (user vs bot)
+- Proper spacing and alignment
+- Rounded message boxes
+
+2. PROFESSIONAL LAYOUT:
+- Chat window with:
+  - header (title + close button)
+  - chat area
+  - input box with send button
+
+3. SCROLLING (CRITICAL):
+- Add proper scrollable chat area
+- User should be able to manually scroll previous messages
+- Auto-scroll to latest message
+
+4. RESPONSIVE DESIGN:
+- Must work properly on mobile and desktop
+
+5. INPUT EXPERIENCE:
+- Press Enter to send
+- Placeholder text like:
+  "Ask me anything about the college..."
+
+6. OPTIONAL (GOOD TO HAVE):
+- Add quick suggestion buttons (e.g. "Admissions", "Fees", "Placements")
+
+-------------------------------------
+
+PART 3 — REFERENCE (IMPORTANT)
+
+If UI is unclear:
+
+- Analyze modern chatbot UIs from real college websites
+- Follow standard chatbot UX patterns
+
+-------------------------------------
+
+RULES:
+
+- Do NOT break existing functionality
+- Do NOT remove current AI logic — only improve it
+- Keep everything lightweight (no heavy frameworks)
+
+-------------------------------------
+
+IMPLEMENTATION ORDER:
+
+1. Improve AI logic (ai-assistant.js)
+2. Improve knowledge-base.json
+3. Redesign chatbot UI (HTML + CSS + JS)
+4. Add scrolling and interaction improvements
+
+-------------------------------------
+
+AFTER COMPLETION:
+
+- Show all changes
+- Explain improvements clearly
+
+Then STOP.

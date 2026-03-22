@@ -99,7 +99,7 @@
 
         .ai-chat-messages {
             flex: 1;
-            /* Scroll styling is in ai-assistant.css */
+            min-height: 0; /* critical for flex children to scroll */
         }
 
         .ai-input-section {
@@ -256,7 +256,7 @@
                             <img src="assets/images/icons/001-web_logo_banner_2026.png" alt="KEC Logo" class="ai-header-logo">
                             <div class="ai-header-text">
                                 <h2>Kingston Assistant</h2>
-                                <p>Rules-based Intelligent Support</p>
+                                <p>AI-Powered Campus Guide</p>
                             </div>
                         </div>
                         <div class="ai-status-badge">
@@ -271,13 +271,15 @@
 
                     <div class="ai-input-section">
                         <div class="ai-quick-actions">
-                            <button class="ai-quick-btn" data-query="admission">📋 Admission</button>
-                            <button class="ai-quick-btn" data-query="fees">💰 Fees</button>
-                            <button class="ai-quick-btn" data-query="placement">📊 Placements</button>
-                            <button class="ai-quick-btn" data-query="contact">📞 Contact</button>
+                            <button class="ai-quick-btn" data-query="Tell me about admissions">📋 Admissions</button>
+                            <button class="ai-quick-btn" data-query="What is the fee structure?">💰 Fees</button>
+                            <button class="ai-quick-btn" data-query="Tell me about placements">📊 Placements</button>
+                            <button class="ai-quick-btn" data-query="What departments are available?">🏛️ Departments</button>
+                            <button class="ai-quick-btn" data-query="Tell me about hostel facilities">🏠 Hostel</button>
+                            <button class="ai-quick-btn" data-query="Tell me about scholarships">🏆 Scholarships</button>
                         </div>
                         <div class="ai-input-wrapper">
-                            <input type="text" id="fullpage-input" class="ai-input-field" placeholder="Type your question here...">
+                            <input type="text" id="fullpage-input" class="ai-input-field" placeholder="Ask me anything about Kingston Engineering College…">
                             <button id="fullpage-send" class="ai-send-button"><i class="fa-solid fa-paper-plane"></i></button>
                         </div>
                     </div>
@@ -288,21 +290,29 @@
                     <div class="ai-info-section">
                         <h4><i class="fa-solid fa-circle-question"></i> Popular Topics</h4>
                         <div class="ai-info-grid">
-                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about admission process'); window.KingstonAI.handleSendMessage();">
-                                <h5>Admissions</h5>
-                                <p>Eligibility, documents and process</p>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about admissions'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>📋 Admissions</h5>
+                                <p>Eligibility, TNEA, documents and process</p>
                             </div>
-                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('What is the fee structure?'); window.KingstonAI.handleSendMessage();">
-                                <h5>Fees & Scholarships</h5>
-                                <p>Program fees and financial aid</p>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('What is the fee structure?'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>💰 Fees & Scholarships</h5>
+                                <p>Program fees, hostel and financial aid</p>
                             </div>
-                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about placements'); window.KingstonAI.handleSendMessage();">
-                                <h5>Placements</h5>
-                                <p>Recruiters and salary statistics</p>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about placements'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>📊 Placements</h5>
+                                <p>Recruiters, packages and career support</p>
                             </div>
-                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('What departments are available?'); window.KingstonAI.handleSendMessage();">
-                                <h5>Departments</h5>
-                                <p>Engineering and Arch branches</p>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('What departments are available?'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>🏛️ Departments</h5>
+                                <p>Engineering, Architecture and MBA</p>
+                            </div>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about hostel facilities'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>🏠 Hostel & Campus Life</h5>
+                                <p>Accommodation, mess and activities</p>
+                            </div>
+                            <div class="ai-info-card" onclick="window.KingstonAI.setInput('Tell me about research at Kingston'); window.KingstonAI.handleSendMessage('fullpage');">
+                                <h5>🔬 Research & Innovation</h5>
+                                <p>Projects, patents and IIC support</p>
                             </div>
                         </div>
                     </div>
@@ -310,9 +320,9 @@
                     <div class="ai-info-section" style="margin-top: 30px;">
                         <h4><i class="fa-solid fa-circle-info"></i> How it works</h4>
                         <p style="font-size: 0.85rem; color: #666; line-height: 1.6;">
-                            This assistant uses a local knowledge base to provide accurate, guided information.
+                            Ask anything — admissions, fees, hostel, placements, scholarships, departments, and more.
                             <br><br>
-                            <strong>Strict Policy:</strong> No artificial generation. All data is verified from college records.
+                            Supports <strong>English, Hindi and Hinglish</strong> queries. When I can't find an exact answer, I'll point you to the right page on the website.
                         </p>
                     </div>
                 </div>
