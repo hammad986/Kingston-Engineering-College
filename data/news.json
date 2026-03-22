@@ -1,0 +1,12 @@
+[
+  {"id":1,"title":"Inauguration of New Research Lab","date":"2024-10-15","image":"assets/images/news/news1.jpg","summary":"Kingston Engineering College inaugurated its state-of-the-art AI & Robotics Research Lab today."},
+  {"id":2,"title":"NIRF Ranking 2026-27 Announced","date":"2024-10-10","image":"assets/images/news/news2.jpg","summary":"KEC achieves prestigious NIRF ranking in the 201-300 band for Engineering category."},
+  {"id":3,"title":"Annual Tech Fest 2024","date":"2024-10-05","image":"assets/images/news/news3.jpg","summary":"Register Now for the annual tech fest celebrating innovation and creativity."},
+  {"id":4,"title":"Placement Drive 2024 Results","date":"2024-09-28","image":"assets/images/news/news4.jpg","summary":"Record placements recorded with top MNCs participating in campus recruitment."},
+  {"id":5,"title":"International Conference on Engineering","date":"2024-09-20","image":"assets/images/news/news5.jpg","summary":"KEC hosted an international conference on emerging engineering technologies."},
+  {"id":6,"title":"Sports Day Celebration","date":"2024-09-15","image":"assets/images/news/news6.jpg","summary":"Annual sports day witnessed enthusiastic participation from all departments."},
+  {"id":7,"title":"New Hostel Block Inauguration","date":"2024-09-10","image":"assets/images/news/news7.jpg","summary":"A new hostel block with modern amenities was inaugurated for students."},
+  {"id":8,"title":"Industry Visit to ISRO","date":"2024-09-05","image":"assets/images/news/news8.jpg","summary":"Students from Aerospace Engineering visited ISRO facilities in Sriharikota."},
+  {"id":9,"title":"Alumni Meet 2024","date":"2024-08-28","image":"assets/images/news/news9.jpg","summary":"Annual alumni meet brought together graduates from across different batches."},
+  {"id":10,"title":"Cultural Fest Utsav 2024","date":"2024-08-20","image":"assets/images/news/news10.jpg","summary":"Cultural extravaganza Utsav showcased diverse talents of KEC students."}
+]

@@ -1,0 +1,136 @@
+{
+  "college": {
+    "name": "Kingston Engineering College",
+    "tagline": "Autonomous | AICTE Approved | NAAC 'A' Grade",
+    "phone": "+91-416-2244777",
+    "email": "admission@kingston.ac.in",
+    "address": "Timpla Nagar, Trichy, Tamil Nadu",
+    "about": "Kingston Engineering College is an autonomous institution approved by AICTE and affiliated to Anna University. We have achieved NAAC 'A' grade and are committed to providing world-class education in engineering and technology."
+  },
+  "intents": [
+    {
+      "id": "greeting",
+      "keywords": ["hi", "hello", "hey", "greetings", "good morning", "good afternoon", "good evening"],
+      "title": "Welcome to Kingston!",
+      "content_points": [
+        "I am your college assistant.",
+        "How can I help you today?",
+        "You can ask about admissions, fees, placements, and more."
+      ],
+      "actions": [
+        {"text": "Placement Info", "query": "Tell me about placements"},
+        {"text": "Fee Structure", "query": "What is the fee structure?"},
+        {"text": "Contact Admin", "query": "How to contact admin?"}
+      ]
+    },
+    {
+      "id": "admission",
+      "keywords": ["admission", "apply", "enroll", "join", "how to apply"],
+      "title": "Admission Process",
+      "content_points": [
+        "Eligibility (B.Tech): 12th pass with Physics, Chemistry, Math",
+        "Eligibility (M.Tech): B.Tech degree",
+        "Eligibility (MBA): Any graduation",
+        "Process: Merit-based through TNEA, GATE, or CAT",
+        "Documents: Mark sheets, Entrance score, Aadhar, Community Certificate"
+      ],
+      "actions": [
+        {"text": "Apply Now", "url": "admission_enquiry.html"},
+        {"text": "Contact Admission", "url": "contact.html"}
+      ]
+    },
+    {
+      "id": "fees",
+      "keywords": ["fee", "fees", "fee structure", "cost", "charges", "tuition", "payment"],
+      "title": "Fee Structure",
+      "content_points": [
+        "B.E. (Engineering): ₹1,60,000 per annum",
+        "B.Arch (Architecture): ₹1,80,000 per annum",
+        "M.Tech (Post-Graduation): ₹1,50,000 per annum",
+        "MBA: ₹2,00,000 per annum",
+        "Hostel: ₹1,00,000 per annum (optional)"
+      ],
+      "actions": [
+        {"text": "Inquire About Fees", "url": "admission_enquiry.html"},
+        {"text": "Contact Admin", "url": "contact.html"}
+      ]
+    },
+    {
+      "id": "placement",
+      "keywords": ["placement", "package", "company", "recruiters", "job", "salary", "hiring"],
+      "title": "Placement Statistics",
+      "content_points": [
+        "Placement Rate: 95%",
+        "Highest Package: ₹25 LPA",
+        "Average Package: ₹6.5 LPA",
+        "Top Recruiters: TCS, Infosys, Wipro, Amazon, Microsoft"
+      ],
+      "actions": [
+        {"text": "View Full Report", "url": "placement_report.html"},
+        {"text": "Placement Cell", "url": "placement_pat.html"}
+      ]
+    },
+    {
+      "id": "contact",
+      "keywords": ["contact", "phone", "email", "address", "location", "call"],
+      "title": "Contact Details",
+      "content_points": [
+        "Email: admission@kingston.ac.in",
+        "Phone: +91-416-2244777",
+        "Admin Phone: +91-75400-37999",
+        "Location: Timpla Nagar, Trichy, Tamil Nadu"
+      ],
+      "actions": [
+        {"text": "Contact Us Page", "url": "contact.html"},
+        {"text": "Admission Inquiry", "url": "admission_enquiry.html"}
+      ]
+    },
+    {
+      "id": "departments",
+      "keywords": ["department", "departments", "courses", "engineering", "cse", "ece", "mechanical", "it", "civil", "ai"],
+      "title": "Academic Departments",
+      "content_points": [
+        "CSE, ECE, Mechanical, IT, Civil",
+        "AI & Data Science, CSE-AIML, CSBS",
+        "Architecture (B.Arch)",
+        "Management (MBA)"
+      ],
+      "actions": [
+        {"text": "View Departments", "url": "departments.html"}
+      ]
+    },
+    {
+      "id": "thanks",
+      "keywords": ["thanks", "thank you", "thanks for help"],
+      "title": "You're Welcome!",
+      "content_points": [
+        "Happy to help!",
+        "Is there anything else you'd like to know about Kingston Engineering College?"
+      ],
+      "actions": [
+        {"text": "Admissions", "query": "admission"},
+        {"text": "Placements", "query": "placement"}
+      ]
+    },
+    {
+      "id": "acknowledgment",
+      "keywords": ["ok", "okay", "alright", "sure", "yes"],
+      "title": "Great!",
+      "content_points": [
+        "Feel free to reach out if you have more questions."
+      ],
+      "actions": [
+        {"text": "Apply Now", "url": "admission_enquiry.html"},
+        {"text": "Contact Us", "url": "contact.html"}
+      ]
+    }
+  ],
+  "fallback": {
+    "message": "Sorry, I can only answer based on available college website information.",
+    "suggestions": [
+      {"text": "Admission Process", "query": "admission"},
+      {"text": "Fee Structure", "query": "fees"},
+      {"text": "Placement Info", "query": "placement"}
+    ]
+  }
+}

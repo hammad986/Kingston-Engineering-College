@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Testimonials - Kingston Engineering College</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        .testimonials-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .testimonials-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #003366;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .testimonials-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5c518 0%, #ff9800 100%);
+            border-radius: 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.3s;
+            border-top: 5px solid #003366;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .testimonial-rating {
+            margin-bottom: 20px;
+            color: #f5c518;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            flex-grow: 1;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #003366, #1a5490);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .author-info h3 {
+            color: #003366;
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .author-info p {
+            color: #999;
+            font-size: 0.9rem;
+            margin: 3px 0 0 0;
+        }
+
+        /* Video Testimonials */
+        .video-testimonials {
+            margin-top: 80px;
+            padding-top: 80px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .video-testimonials h2 {
+            text-align: center;
+            color: #003366;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            font-weight: 800;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-container:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f5c518, #ff9800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .video-container:hover .play-button {
+            transform: scale(1.1);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            border: 2px solid #003366;
+            background: white;
+            color: #003366;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #003366;
+            color: white;
+        }
+
+        /* Testimonial Categories */
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-section h3 {
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #003366, #1a5490);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .swiper-pagination {
+            position: static !important;
+            margin-top: 30px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px !important;
+            height: 12px !important;
+            background: #ddd !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #003366 !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #003366 !important;
+            background: #f5c518 !important;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1.2rem !important;
+            font-weight: 900 !important;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <!-- Top Info Bar -->
+        <div class="top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-bar-left">
+                    <span>For Admission</span>
+                    <a href="tel:+917540037999"><i class="fa-solid fa-phone"></i> +91 75400 37999</a>
+                    <a href="mailto:admission@kingston.ac.in"><i class="fa-solid fa-envelope"></i>
+                        admission@kingston.ac.in</a>
+                </div>
+                <div class="top-bar-middle hidden-mobile">
+                    <a href="#">COE</a>
+                    <a href="alumni.html">Alumni</a>
+                    <a href="#">Grievance & Help Desk</a>
+                    <a href="admission.html">Admission</a>
+                    <a href="#" title="Coming Soon">Student-Log In</a>
+                    <a href="#" title="Coming Soon">Staff-Log In</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" class="btn-pay-online">Pay Online</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Logo Bar -->
+        <div class="logo-bar">
+            <div class="container logo-bar-inner">
+                <div class="logo-area">
+                    <img src="assets/images/icons/001-web_logo_banner_2026.png" width="450" height="150"
+                        alt="Logo" class="main-logo" onerror="this.src='assets/images/icons/001-web_logo_banner_2026.png'">
+                </div>
+                <div class="accreditations-area">
+                    <div class="accred-logos">
+                        <!-- Desktop View / Mobile Marquee duplicated -->
+                        <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC">
+                        <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
+                            alt="AICTE">
+                        <img src="assets/images/icons/004-coa.png" alt="coa">
+                        <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University">
+                        <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC">
+                        <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC">
+                        <img src="assets/images/icons/008-blue-horizontal.png" width="100" height="150"
+                            alt="blue-horizontal">
+                        <!-- Duplicates for seamless marquee (Mobile Only) -->
+                        <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC" class="mobile-only-logo">
+                        <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
+                            alt="AICTE" class="mobile-only-logo">
+                        <img src="assets/images/icons/004-coa.png" alt="coa" class="mobile-only-logo">
+                        <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University"
+                            class="mobile-only-logo">
+                        <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC" class="mobile-only-logo">
+                        <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC"
+                            class="mobile-only-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notice Bar -->
+        <div class="notice-bar">
+            <div class="notice-label">Register Now</div>
+            <div class="marquee-wrapper">
+                <div class="marquee-content notice-marquee">
+                    <span>Tamil Nadu Govt's En kanavu En Ethirkaalam - Click Here</span>
+                    <span>Tamil Nadu Govt's En kanavu En Ethirkaalam - Click Here</span>
+                    <span>Tamil Nadu Govt's En kanavu En Ethirkaalam - Click Here</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <button class="mobile-menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i> Menu</button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="about.html">About Us</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="about_chairman.html">Chairman</a></li>
+                            <li><a href="about_principal.html">Principal</a></li>
+                            <li><a href="about_mou.html">MOU</a></li>
+                            <li><a href="about_awards.html">Awards and Achievements</a></li>
+                            <li><a href="about_organogram.html">Organogram</a></li>
+                            <li><a href="about_governing.html">Governing Council</a></li>
+                            <li><a href="about_accreditation.html">Accreditation</a></li>
+                            <li><a href="ugc_mandatory.html">UGC Mandatory Committee</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="departments.html">Departments</a>
+                        <ul class="dropdown dropdown-columns js-exclude-dropdown">
+                            <li><a href="dept_cse.html">Computer Science and Engineering</a></li>
+                            <li><a href="dept_BA.html">Bachelor of Architecture</a></li>
+                            <li><a href="dept_AI&ML.html">Computer Science Engineering with AI & ML</a></li>
+                            <li><a href="dept_ece.html">Electronics and Communication Engineering</a></li>
+                            <li><a href="dept_mechanical.html">Mechanical Engineering</a></li>
+                            <li><a href="dept_IT.html">Information Technology</a></li>
+                            <li><a href="dept_AI&DS.html">Artificial Intelligence and Data Science</a></li>
+                            <li><a href="dept_csbs.html">Computer Science and Business Systems</a></li>
+                            <li><a href="dept_S&H.html">Science and Humanities</a></li>
+                            <li><a href="dept_MBA.html">Masters in business administration</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li class="has-dropdown">
+                        <a href="facilities.html">Facilities</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="facilities_infrastructure.html">Infrastructure</a></li>
+                            <li><a href="facilities_event_gallery.html">Event Gallery</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="facilities_it.html">IT Infrastructure</a></li>
+                            <li><a href="facilities_library.html">Library</a></li>
+                            <li><a href="facilities_welfare.html">Welfare Measures</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="policies.html">Policies</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Placements</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="placement_pat.html">Placement & Training Cell</a></li>
+                            <li><a href="placement_vision_mission.html">Vision & Mission, Objectives</a></li>
+                            <li><a href="placement_recruiters.html">Corporate Recruiters</a></li>
+                            <li><a href="placement_report.html">Placement Report</a></li>
+                            <li><a href="placement_industry_connect.html">Industry Connect</a></li>
+                            <li><a href="placement_campus_hiring.html">Campus Hiring</a></li>
+                            <li><a href="placement_value_added.html">Value added Courses Training</a></li>
+                            <li><a href="placement_capacity_dev.html">Capacity Dev and Skill Dev</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">IQAC</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="iqac_about.html">IQAC</a></li>
+                            <li><a href="iqac_mom.html">Minutes of Meeting</a></li>
+                            <li><a href="iqac_quality_initiatives.html">IQAC Quality Initiatives</a></li>
+                            <li><a href="iqac_annual_reports.html">Annual Reports</a></li>
+                            <li><a href="iqac_academic_audit.html">Academic Audit</a></li>
+                            <li><a href="iqac_feedback.html">Feedback</a></li>
+                            <li><a href="iqac_strategic_plan.html">Strategic Plan 2024</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">NAAC</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="naac_iiqa.html">IIQA</a></li>
+                            <li><a href="naac_ssr.html">SSR</a></li>
+                            <li><a href="naac_dvv.html">DVV Clarification</a></li>
+                            <li><a href="naac_rti.html">RTI</a></li>
+                            <li><a href="naac_extended_profile.html">Extended Profile</a></li>
+                            <li><a href="naac_curricular_aspects.html">Curricular Aspects</a></li>
+                            <li><a href="naac_teaching_learning.html">Teaching Learning and Evaluation</a></li>
+                            <li><a href="naac_research_innovation.html">Research Innovation and Extension</a></li>
+                            <li><a href="naac_infrastructure.html">Infrastructure and Learning Resource</a></li>
+                            <li><a href="naac_student_support.html">Student Support Progression</a></li>
+                            <li><a href="naac_governance.html">Governance, Leadership and Management</a></li>
+                            <li><a href="naac_institutional_values.html">Institution Values and Best Practices</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="ugc_mandatory_committee.html">UGC Mandatory Committee <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="ugc_mc_icc.html">Internal Complaint Committee</a></li>
+                            <li><a href="ugc_mc_sgrc.html">Student Grievance Redressal</a></li>
+                            <li><a href="ugc_mc_posh.html">POSH Cell</a></li>
+                            <li><a href="ugc_mc_sedg.html">SEDG</a></li>
+                            <li><a href="ugc_mc_arc.html">Anti Ragging Committee</a></li>
+                            <li><a href="ugc_mc_eqc.html">Equal Opportunity Cell</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="ugc_undertaking.html">UGC Undertaking Letter By HOI <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="ugc_ul_1.html">Undertaking Letter I</a></li>
+                            <li><a href="ugc_ul_2.html">Undertaking Letter II</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="public_self_disclosure.html">Public Self Disclosure <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li class="has-dropdown">
+                                <a href="#">About HEI <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_aboutus.html">About Us</a></li>
+                                    <li><a href="ugc_ps_act_statutes.html">Act and Statutes</a></li>
+                                    <li><a href="ugc_ps_idp.html">Institutional Development Plan</a></li>
+                                    <li><a href="ugc_ps_affiliating.html">Affiliating University</a></li>
+                                    <li><a href="ugc_ps_accreditation.html">Accreditation / Ranking Status</a></li>
+                                    <li><a href="ugc_ps_recognition.html">Recognition / Approvals</a></li>
+                                    <li><a href="ugc_ps_annual_reports.html">Annual Reports</a></li>
+                                    <li><a href="ugc_ps_annual_accounts.html">Annual Accounts & Audit Reports</a></li>
+                                    <li><a href="ugc_ps_sponsoring_body.html">Sponsoring Body Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Administrations <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_finance.html">Finance Officer</a></li>
+                                    <li><a href="ugc_ps_coe.html">Controller of Examination</a></li>
+                                    <li><a href="ugc_ps_cvo.html">Chief Vigilance Officer</a></li>
+                                    <li><a href="ugc_ps_ombudsperson.html">Ombudsperson</a></li>
+                                    <li><a href="ugc_ps_bos.html">Executive Council</a></li>
+                                    <li><a href="ugc_ps_academic_leadership.html">Academic Leadership (HoDs)</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Academic <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_academic_programs.html">Academic Programs</a></li>
+                                    <li><a href="ugc_ps_academic_calendar.html">Academic Calendars</a></li>
+                                    <li><a href="ugc_ps_examinations.html">Examinations</a></li>
+                                    <li><a href="departments.html">Department</a></li>
+                                    <li><a href="ugc_ps_staff.html">Department Wise Faculty Details</a></li>
+                                    <li><a href="iqac_about.html">Internal Quality Assurance Cell</a></li>
+                                    <li><a href="#">Library</a></li>
+                                    <li><a href="ugc_ps_mou.html">Academic Collaborations</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Admissions <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_prospectus.html">Prospectus</a></li>
+                                    <li><a href="ugc_ps_feerefund.html">Fee Refund Policy</a></li>
+                                    <li><a href="ugc_ps_admission_policy.html">Admission Process and Guidelines</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Research's <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_rnd.html">Research and Development Cell</a></li>
+                                    <li><a href="ugc_ps_incubation.html">Incubation Centre / Start-Ups / IIC</a></li>
+                                    <li><a href="#">Central Facilities</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Student Life <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_sports.html">Sports Facilities</a></li>
+                                    <li><a href="ugc_ps_nss.html">NSS</a></li>
+                                    <li><a href="ugc_ps_hostel.html">Hostel Details</a></li>
+                                    <li><a href="placement_pat.html">Placement Cell & Activities</a></li>
+                                    <li><a href="ugc_ps_sl_sgrc.html">SGRC and Ombudsperson</a></li>
+                                    <li><a href="ugc_ps_health.html">Health Facilities</a></li>
+                                    <li><a href="ugc_ps_sl_icc.html">Internal Complaints Committee</a></li>
+                                    <li><a href="ugc_ps_sl_antiragging.html">Anti Ragging Cell</a></li>
+                                    <li><a href="ugc_ps_sl_equalopportunity.html">Equal Opportunity Cell</a></li>
+                                    <li><a href="ugc_ps_sl_sedg.html">SEDG</a></li>
+                                    <li><a href="ugc_ps_differentlyabled.html">Facilities for Differently Abled</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="ugc_ps_alumni.html">Alumni Association</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Information Corner <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_rti.html">RTI</a></li>
+                                    <li><a href="ugc_ps_circulars.html">Circulars and Notices</a></li>
+                                    <li><a href="ugc_ps_announcements.html">Announcements</a></li>
+                                    <li><a href="ugc_ps_newsletters.html">Newsletters</a></li>
+                                    <li><a href="ugc_ps_events.html">News, Recent Events & Achievements</a></li>
+                                    <li><a href="#">Job Openings</a></li>
+                                    <li><a href="ugc_ps_studyinindia.html">Admission for International Students</a></li>
+                                    <li><a href="#">Details and Location Map</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section style="background: linear-gradient(135deg, #003366 0%, #1a5490 100%); padding: 80px 20px; text-align: center; color: white;">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px;" data-aos="fade-down">
+                Student Testimonials
+            </h1>
+            <p style="font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto;" data-aos="fade-up" data-aos-delay="200">
+                Hear directly from our students about their Kingston experience and achievements.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="testimonials-container">
+        <!-- Statistics -->
+        <div class="stats-grid" data-aos="zoom-in">
+            <div class="stat-card">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Happy Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Placement Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.8/5</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Alumni Success Stories</div>
+            </div>
+        </div>
+
+        <!-- Current Students Section -->
+        <div class="category-section" data-aos="fade-up">
+            <h3>
+                <div class="category-icon"><i class="fas fa-graduation-cap"></i></div>
+                Current Students
+            </h3>
+
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Kingston has transformed my career aspirations into reality. The faculty here is not just knowledgeable but genuinely invested in our growth. The industry-focused curriculum and hands-on projects have prepared me exceptionally well."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">RK</div>
+                                <div class="author-info">
+                                    <h3>Rajesh Kumar</h3>
+                                    <p>B.E. Computer Science, 3rd Year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "What impressed me most about Kingston is the balance between theory and practical knowledge. The labs are state-of-the-art, and the placement cell is incredibly supportive. I'm grateful for this journey!"
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">PS</div>
+                                <div class="author-info">
+                                    <h3>Priya Singh</h3>
+                                    <p>B.Tech Information Technology, 2nd Year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "The faculty's mentorship and the college's emphasis on innovation have made my journey here truly enriching. Kingston doesn't just teach us subjects; it shapes us into well-rounded professionals ready for the real world."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">VJ</div>
+                                <div class="author-info">
+                                    <h3>Vikram Joshi</h3>
+                                    <p>B.E. Electronics & Communication, 4th Year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Kingston's inclusive environment and diverse student body helped me grow not just academically but also personally. The internship opportunities and industry collaborations are exceptional and truly career-boosting."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">AP</div>
+                                <div class="author-info">
+                                    <h3>Anjali Patel</h3>
+                                    <p>B.E. Mechanical Engineering, 3rd Year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Alumni Section -->
+        <div class="category-section" data-aos="fade-up" data-aos-delay="200">
+            <h3>
+                <div class="category-icon"><i class="fas fa-star"></i></div>
+                Alumni Success Stories
+            </h3>
+
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Kingston gave me the foundation and confidence to pursue my dreams. Today, as Lead Engineer at Google, I credit Kingston for teaching me problem-solving skills and instilling a culture of excellence that drives my success every day."
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">AK</div>
+                                <div class="author-info">
+                                    <h3>Aditya Kumar</h3>
+                                    <p>Lead Engineer, Google | Batch 2018</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "My startup journey began with an idea I developed during my college days at Kingston. The entrepreneurial ecosystem and mentorship from faculty helped me turn it into a successful venture serving over 100K users today!"
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">SD</div>
+                                <div class="author-info">
+                                    <h3>Shweta Dhanraj</h3>
+                                    <p>Founder & CEO, TechStart Innovation | Batch 2017</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Kingston's emphasis on research and innovation led me to pursue a PhD. Currently, my research in AI has resulted in 15+ publications in top-tier conferences. Kingston truly opened doors to world-class opportunities!"
+                            </p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">RB</div>
+                                <div class="author-info">
+                                    <h3>Rajesh Bhattacharya</h3>
+                                    <p>Research Scientist, MIT | PhD, IIT | Batch 2016</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <!-- Video Testimonials -->
+        <div class="video-testimonials" data-aos="fade-up">
+            <h2>Video Testimonials</h2>
+            <div class="video-grid">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="video-overlay">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="video-overlay">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="video-overlay">
+                        <div class="play-button"><i class="fas fa-play"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-col about-col">
+                    <div class="footer-logo">
+                        <img src="assets/images/icons/001-web_logo_banner_2026.png" alt="Kingston Logo">
+                    </div>
+                    <p>Kingston Engineering College, where education meets innovation. Transforming students into global
+                        professionals since 2001.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="admission.html">Admissions</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="facilities.html">Facilities</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Departments</h4>
+                    <ul class="footer-links">
+                        <li><a href="dept_cse.html">Computer Science</a></li>
+                        <li><a href="dept_ece.html">Electronics & Comm</a></li>
+                        <li><a href="dept_mechanical.html">Mechanical Engg</a></li>
+                        <li><a href="dept_IT.html">Information Tech</a></li>
+                        <li><a href="dept_MBA.html">MBA</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fa-solid fa-location-dot"></i> Kingston Engineering College, Vellore, TN</li>
+                        <li><i class="fa-solid fa-phone"></i> +91 75400 37999</li>
+                        <li><i class="fa-solid fa-envelope"></i> admission@kingston.ac.in</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026-27 Kingston Engineering College. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="sitemap.html">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Initialize Swiper for both testimonial sections
+        const swipers = document.querySelectorAll('.swiper');
+        swipers.forEach(swiperElement => {
+            new Swiper(swiperElement, {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: swiperElement.querySelector('.swiper-pagination'),
+                    clickable: true,
+                    dynamicBullets: true
+                },
+                navigation: {
+                    nextEl: swiperElement.querySelector('.swiper-button-next'),
+                    prevEl: swiperElement.querySelector('.swiper-button-prev')
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2
+                    },
+                    1024: {
+                        slidesPerView: 3
+                    }
+                },
+                loop: true,
+                effect: 'slide'
+            });
+        });
+
+        // Mobile Menu
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
