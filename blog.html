@@ -140,14 +140,196 @@
         }
     </style>
 <style>
-    .fac-hero { position: relative; width: 100%; height: 460px; overflow: hidden; background: #000; }
-    .fac-hero video { width: 100%; height: 100%; object-fit: cover; }
-    .fac-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 60%, transparent 100%); display: flex; align-items: flex-end; padding: 44px 64px; }
-    .fac-hero-overlay h1 { color: #fff; font-size: 2.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; border-left: 6px solid #f5c518; padding-left: 22px; }
-    
+/* ── Blog page hero ─────────────────────────────────── */
+.blog-page-hero {
+    background: linear-gradient(135deg, #003366 0%, #00509e 60%, #0072ce 100%);
+    padding: 56px 0 48px;
+    position: relative;
+    overflow: hidden;
+}
+.blog-page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.blog-page-hero .container { position: relative; z-index: 1; }
+.blog-page-hero h1 { color: #fff; font-size: 2.4rem; font-weight: 800; margin: 0 0 8px; letter-spacing: 1px; }
+.blog-page-hero p { color: rgba(255,255,255,0.8); font-size: 1rem; margin: 0; }
+.blog-breadcrumb { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin-bottom: 16px; }
+.blog-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+.blog-breadcrumb a:hover { color: #fff; }
 
-.blog-card { box-shadow: 0 15px 40px rgba(0,0,0,0.05); transition: 0.4s; border-radius: 15px; overflow: hidden; }
-.blog-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,51,102,0.15); }
+/* ── Filter & search bar ─────────────────────────── */
+.blog-controls {
+    background: #fff;
+    border-bottom: 1px solid #e8edf5;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.blog-controls-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.blog-search-wrap {
+    position: relative;
+    flex: 0 0 260px;
+}
+.blog-search-wrap i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 0.85rem;
+}
+#blog-search {
+    width: 100%;
+    padding: 9px 14px 9px 34px;
+    border: 1.5px solid #dde4f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #f8faff;
+}
+#blog-search:focus { border-color: #003366; background: #fff; }
+
+#blog-filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+.news-filter-btn {
+    background: #f0f4fb;
+    border: 1.5px solid #dde4f0;
+    color: #555;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+}
+.news-filter-btn:hover { border-color: #003366; color: #003366; background: #e8f0fb; }
+.news-filter-btn.active { background: #003366; border-color: #003366; color: #fff; }
+
+/* ── News grid ───────────────────────────────────── */
+.blog-news-section { padding: 48px 0 64px; background: #f4f7fb; }
+#blog-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 28px;
+}
+.blog-news-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex;
+    flex-direction: column;
+}
+.blog-news-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,51,102,0.13); }
+.blog-news-card.featured { border: 2px solid #003366; }
+
+.blog-news-img-wrap { position: relative; height: 210px; overflow: hidden; }
+.blog-news-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.blog-news-card:hover .blog-news-img-wrap img { transform: scale(1.04); }
+
+.news-cat-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.news-featured-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f5c518;
+    color: #333;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.blog-news-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+.news-date { font-size: 0.78rem; color: #888; margin-bottom: 8px; display: block; }
+.blog-news-title { font-size: 1.05rem; font-weight: 700; color: #003366; margin: 0 0 10px; line-height: 1.45; }
+.blog-news-title a { color: inherit; text-decoration: none; }
+.blog-news-title a:hover { color: #0056b3; }
+.blog-news-excerpt { font-size: 0.88rem; color: #555; line-height: 1.65; margin: 0 0 16px; flex: 1; }
+
+.blog-news-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.news-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.news-tag {
+    background: #eef2fb;
+    color: #003366;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 12px;
+    border: 1px solid #d5e0f5;
+}
+.news-read-more {
+    color: #003366;
+    font-weight: 700;
+    font-size: 0.84rem;
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.18s;
+}
+.news-read-more:hover { color: #c0392b; }
+
+/* ── Homepage slider extras ──────────────────────── */
+.news-card-img-wrap { position: relative; }
+.news-date { display: block; font-size: 0.78rem; color: #888; margin-bottom: 6px; }
+.news-card-excerpt { font-size: 0.84rem; color: #666; margin: 4px 0 10px; line-height: 1.55; }
+
+/* ── No results ──────────────────────────────────── */
+.blog-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 60px 20px;
+    font-size: 1rem;
+}
+.blog-no-results button {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    color: #003366;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    #blog-news-grid { grid-template-columns: 1fr; }
+    .blog-controls-inner { gap: 10px; }
+    .blog-search-wrap { flex: 1 1 100%; }
+    .blog-page-hero h1 { font-size: 1.7rem; }
+}
 </style>
 </head>
 
@@ -453,22 +635,40 @@
     </header>
     <main>
 
-<section style="padding: 80px 0;">
-    <div class="container">
-        <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px;">
-            <div class="blog-card" data-aos="fade-up">
-                <div class="blog-img" style="height: 200px; background: #eee;"></div>
-                <div class="blog-info" style="padding: 25px; background: #fff; border: 1px solid #eee; border-radius: 0 0 15px 15px;">
-                    <span style="color: #f5c518; font-weight: 700;">Academic</span>
-                    <h3 style="margin: 10px 0; color: #003366;">Admission Open for 2026-27</h3>
-                    <p style="color: #666; font-size: 0.95rem;">Kingston Engineering College Invites applications for various UG and PG courses...</p>
-                    <a href="admission.html" style="display: inline-block; margin-top: 15px; color: #003366; font-weight: 800; text-decoration: none;">Apply Now &rarr;</a>
-                </div>
-            </div>
-            <!-- More blog cards can be added here -->
+    <!-- Page Hero -->
+    <div class="blog-page-hero">
+        <div class="container">
+            <p class="blog-breadcrumb"><a href="index.html">Home</a> / News &amp; Announcements</p>
+            <h1><i class="fa-solid fa-newspaper" style="font-size:1.8rem;margin-right:12px;opacity:0.85;"></i>News &amp; Announcements</h1>
+            <p>Stay informed with the latest updates, events, achievements and announcements from Kingston Engineering College.</p>
         </div>
     </div>
-</section>
+
+    <!-- Filter & Search Bar -->
+    <div class="blog-controls">
+        <div class="container blog-controls-inner">
+            <div class="blog-search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" id="blog-search" placeholder="Search news…" autocomplete="off">
+            </div>
+            <div id="blog-filter-bar">
+                <!-- Populated by news.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- News Grid -->
+    <section class="blog-news-section">
+        <div class="container">
+            <div id="blog-news-grid">
+                <!-- Populated by news.js -->
+                <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#888;">
+                    <i class="fa-solid fa-spinner fa-spin fa-2x" style="color:#003366;"></i>
+                    <p style="margin-top:16px;">Loading news…</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </main>
 <footer class="main-footer">
@@ -545,6 +745,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/news.js" defer></script>
     <script src="assets/js/script.js"></script>
 </body>
 

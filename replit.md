@@ -31,6 +31,29 @@ Workflow: "Start application" on port 5000 (webview)
 ## Deployment
 Configured as a **static** deployment with `publicDir: "."` (root directory).
 
+## Features Added
+### Site-Wide Search (`assets/js/search.js`, `data/search-index.json`, `assets/css/search.css`)
+- Fuzzy search over 140+ pages with weighted ranking (title×3/keyword×2/desc×1)
+- 300ms debounce, overlay UI, keyboard navigation, 7 results max
+- Search button injected into navbar via `script.js` — no HTML changes needed
+
+### AI Chatbot (`assets/js/ai-assistant.js`, `data/knowledge-base.json`, `assets/css/ai-assistant.css`)
+- 22 intents covering all major college topics with English/Hindi/Hinglish support
+- Weighted scoring, context memory, typing indicator, search fallback cards
+- Follow-up suggestion chips after every response
+- Chat persistence in localStorage with "Clear chat" button
+- Full-page interface at `ai-assistant.html`; floating widget on other pages
+
+### News System (`assets/js/news.js`, `data/news.json`)
+- `data/news.json` — 12 rich news items with category, featured, tags, fallback images
+- `assets/js/news.js` — fetches JSON and powers both homepage slider and blog page
+- `blog.html` — full News & Announcements page with:
+  - Category filter tabs (All, Research, Achievement, Event, Placement, etc.)
+  - Live search/filter
+  - News cards with featured badge, category badges, tags, hover animations
+- Homepage slider updated to load real news data with category badges and dates
+- Place real images in `assets/images/news/news1.jpg` through `news12.jpg`
+
 ## Upgrade Progress
 ### Phase 1 — Critical Fixes (COMPLETE)
 - Email typo fixed across 50 files

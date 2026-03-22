@@ -85,38 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Hero Background Slider (Removed) ---
 
-    // --- News Slider ---
-    const newsWrapper = document.getElementById('news-wrapper');
-    if (newsWrapper) {
-        let nHTML = '';
-        for(let i=1; i<=10; i++) {
-            nHTML += `
-            <div class="swiper-slide">
-                <div class="news-card">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&q=75" class="news-card-img" alt="News">
-                    <div class="news-card-body">
-                        <h3 class="news-card-title">Inauguration of New Research Lab Summit ${i}</h3>
-                        <p class="text-sm text-gray-600 mb-4">Latest advancements in engineering technologies discussed...</p>
-                        <a href="#" class="view-all-link-dark"><i class="fa-solid fa-play text-xs text-brand-red"></i> Read More</a>
-                    </div>
-                </div>
-            </div>`;
-        }
-        newsWrapper.innerHTML = nHTML;
-
-        new Swiper('#news-slider', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            navigation: {
-                nextEl: '.news-next',
-                prevEl: '.news-prev',
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-            }
-        });
-    }
+    // --- News Slider — populated by assets/js/news.js ---
 
     // --- In Focus Slider ---
     const infocusWrapper = document.getElementById('infocus-wrapper');

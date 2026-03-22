@@ -694,9 +694,45 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     font-weight: 700;
     color: var(--brand-blue);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     line-height: 1.4;
 }
+.news-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+.news-date {
+    display: block;
+    font-size: 0.76rem;
+    color: #999;
+    margin-bottom: 6px;
+}
+.news-card-excerpt {
+    font-size: 0.83rem;
+    color: #666;
+    line-height: 1.55;
+    margin: 4px 0 10px;
+}
+.news-read-more {
+    color: var(--brand-blue);
+    font-weight: 700;
+    font-size: 0.84rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.18s;
+}
+.news-read-more:hover { color: var(--brand-red, #c0392b); }
 
 /* ==========================================================================
    EXPLORE CAMPUS
