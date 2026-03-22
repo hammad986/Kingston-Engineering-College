@@ -605,51 +605,9 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="assets/js/script.js"></script>
-    
-    <script>
-        // Admission Enquiry Form Handler
-        function handleEnquirySubmit(event) {
-            event.preventDefault();
-            
-            const form = document.getElementById('enquiryForm');
-            const formData = new FormData(form);
-            
-            // Collect all form data
-            const enquiryData = {
-                fullName: formData.get('fullName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                course: formData.get('course'),
-                message: formData.get('message'),
-                submittedAt: new Date().toISOString()
-            };
-            
-            // Validate phone number (10 digits)
-            if (!/^\d{10}$/.test(enquiryData.phone)) {
-                alert('❌ Please enter a valid 10-digit phone number');
-                return;
-            }
-            
-            // Store in localStorage
-            const existingEnquiries = JSON.parse(localStorage.getItem('kingston_enquiries') || '[]');
-            existingEnquiries.push(enquiryData);
-            localStorage.setItem('kingston_enquiries', JSON.stringify(existingEnquiries));
-            
-            // Send to backend (email notification) - uncomment when backend is ready
-            // fetch('/api/enquiries', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(enquiryData)
-            // });
-            
-            // Show success message
-            alert(`✅ Enquiry Received Successfully!\n\nName: ${enquiryData.fullName}\nEmail: ${enquiryData.email}\nCourse: ${enquiryData.course}\n\nOur admission team will contact you soon.`);
-            
-            // Reset form
-            form.reset();
-        }
-    </script>
+    <script src="assets/js/form-handler.js"></script>
 </body>
 
 </html>

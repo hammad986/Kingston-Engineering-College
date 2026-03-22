@@ -658,10 +658,11 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/form-handler.js"></script>
 
     <script>
-        // Initialize AOS
         AOS.init({
             duration: 800,
             offset: 100,
@@ -669,46 +670,6 @@
             easing: 'ease-out-cubic'
         });
 
-        // Contact Form Handler
-        function handleContactSubmit(event) {
-            event.preventDefault();
-
-            const form = event.target;
-            const formData = new FormData(form);
-
-            const contactData = {
-                fullName: formData.get('fullName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                subject: formData.get('subject'),
-                department: formData.get('department'),
-                message: formData.get('message'),
-                submittedAt: new Date().toISOString()
-            };
-
-            // Validate phone
-            if (!/^\d{10}$/.test(contactData.phone)) {
-                alert('❌ Please enter a valid 10-digit phone number');
-                return;
-            }
-
-            // Store in localStorage
-            const existingContacts = JSON.parse(localStorage.getItem('kingston_contacts') || '[]');
-            existingContacts.push(contactData);
-            localStorage.setItem('kingston_contacts', JSON.stringify(existingContacts));
-
-            // Send to backend - uncomment when ready
-            // fetch('/api/contact', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(contactData)
-            // });
-
-            alert(`✅ Message Sent Successfully!\n\nWe will contact you soon at ${contactData.email}`);
-            form.reset();
-        }
-
-        // Mobile Menu
         document.getElementById('navToggle').addEventListener('click', function() {
             document.getElementById('navMenu').classList.toggle('active');
         });

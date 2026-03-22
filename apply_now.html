@@ -572,77 +572,29 @@
     </div>
 </div>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="assets/js/form-handler.js"></script>
 <script>
     function nextStep(step) {
-        // Hide all panels
         document.getElementById('step-panel-1').style.display = 'none';
         document.getElementById('step-panel-2').style.display = 'none';
         document.getElementById('step-panel-3').style.display = 'none';
         
-        // Show target panel
         document.getElementById('step-panel-' + step).style.display = 'block';
         
-        // Update indicators
-        const steps = [1, 2, 3];
-        steps.forEach(s => {
-            const el = document.getElementById('step' + s);
+        var steps = [1, 2, 3];
+        steps.forEach(function(s) {
+            var el = document.getElementById('step' + s);
             if(s < step) el.className = 'step completed';
             else if(s == step) el.className = 'step active';
             else el.className = 'step';
         });
 
-        // Update lines
         if(step > 1) document.querySelector('.step-line').className = 'step-line active';
         else document.querySelector('.step-line').className = 'step-line';
         
         if(step > 2) document.getElementById('line2').className = 'step-line active';
         else if(document.getElementById('line2')) document.getElementById('line2').className = 'step-line';
-    }
-
-    // Form Submission Handler
-    function handleApplicationSubmit(event) {
-        event.preventDefault();
-        
-        const form = document.getElementById('applyForm');
-        const formData = new FormData(form);
-        
-        // Collect all form data
-        const applicationData = {
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            dob: formData.get('dob'),
-            gender: formData.get('gender'),
-            schoolName: formData.get('schoolName'),
-            marks: formData.get('marks'),
-            community: formData.get('community'),
-            category: formData.get('category'),
-            course: formData.get('course'),
-            submittedAt: new Date().toISOString()
-        };
-        
-        // Store in localStorage
-        const existingApplications = JSON.parse(localStorage.getItem('kingston_applications') || '[]');
-        existingApplications.push(applicationData);
-        localStorage.setItem('kingston_applications', JSON.stringify(existingApplications));
-        
-        // Send to backend (email notification) - uncomment when backend is ready
-        // fetch('/api/applications', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(applicationData)
-        // });
-        
-        // Show success message
-        alert(`✅ Application Submitted Successfully!\n\nName: ${applicationData.firstName} ${applicationData.lastName}\nCourse: ${applicationData.course}\n\nWe will contact you shortly.`);
-        
-        // Reset form
-        form.reset();
-        nextStep(1);
-        
-        // Redirect after 2 seconds
-        setTimeout(() => {
-            window.location.href = 'admission.html';
-        }, 2000);
     }
 </script>
 

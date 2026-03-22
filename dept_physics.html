@@ -176,8 +176,8 @@
                     <a href="alumni.html">Alumni</a>
                     <a href="#">Grievance & Help Desk</a>
                     <a href="admission.html">Admission</a>
-                    <a href="#">Student-Log In</a>
-                    <a href="#">Staff-Log In</a>
+                    <a href="#" title="Coming Soon">Student-Log In</a>
+                    <a href="#" title="Coming Soon">Staff-Log In</a>
                 </div>
                 <div class="top-bar-right">
                     <a href="#" class="btn-pay-online">Pay Online</a>
@@ -189,13 +189,12 @@
         <div class="logo-bar">
             <div class="container logo-bar-inner">
                 <div class="logo-area">
-                    <img src="assets/images/icons/001-web_logo_banner_2026.png" , width="450px" , height="150px"
-                        alt="Logo" class="main-logo" onerror=this
-                        src='assets/images/icons/001-web_logo_banner_2026.png'>
+                    <img src="assets/images/icons/001-web_logo_banner_2026.png" width="450" height="150"
+                        alt="Logo" class="main-logo" onerror="this.src='assets/images/icons/001-web_logo_banner_2026.png'">
                 </div>
-                <div class="accreditations-area hidden-mobile">
+                <div class="accreditations-area">
                     <div class="accred-logos">
-                        <!-- Placeholders mimicking the small logos from the screenshot -->
+                        <!-- Desktop View / Mobile Marquee duplicated -->
                         <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC">
                         <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
                             alt="AICTE">
@@ -203,8 +202,18 @@
                         <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University">
                         <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC">
                         <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC">
-                        <img src="assets/images/icons/008-blue-horizontal.png" , width="100" , height="150"
+                        <img src="assets/images/icons/008-blue-horizontal.png" width="100" height="150"
                             alt="blue-horizontal">
+                        <!-- Duplicates for seamless marquee (Mobile Only) -->
+                        <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC" class="mobile-only-logo">
+                        <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
+                            alt="AICTE" class="mobile-only-logo">
+                        <img src="assets/images/icons/004-coa.png" alt="coa" class="mobile-only-logo">
+                        <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University"
+                            class="mobile-only-logo">
+                        <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC" class="mobile-only-logo">
+                        <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC"
+                            class="mobile-only-logo">
                     </div>
                 </div>
             </div>
@@ -227,7 +236,7 @@
             <div class="container">
                 <button class="mobile-menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i> Menu</button>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li class="has-dropdown">
                         <a href="about.html">About Us</a>
                         <ul class="dropdown js-exclude-dropdown">
@@ -245,16 +254,15 @@
                         <a href="departments.html">Departments</a>
                         <ul class="dropdown dropdown-columns js-exclude-dropdown">
                             <li><a href="dept_cse.html">Computer Science and Engineering</a></li>
-                            <li><a href="departments.html">Bachelor of Architecture</a></li>
-                            <li><a href="departments.html">Computer Science Engineering with Artificial Intelligence &
-                                    Machine Learning</a></li>
-                            <li><a href="departments.html">Electronics and Communication Engineering</a></li>
-                            <li><a href="departments.html">Mechanical Engineering</a></li>
-                            <li><a href="departments.html">Information Technology</a></li>
-                            <li><a href="departments.html">Artificial Intelligence and Data Science</a></li>
-                            <li><a href="departments.html">Computer Science and Business Systems</a></li>
-                            <li><a href="departments.html">Science and Humanities</a></li>
-                            <li><a href="departments.html">Masters in business administration</a></li>
+                            <li><a href="dept_BA.html">Bachelor of Architecture</a></li>
+                            <li><a href="dept_AI&ML.html">Computer Science Engineering with AI & ML</a></li>
+                            <li><a href="dept_ece.html">Electronics and Communication Engineering</a></li>
+                            <li><a href="dept_mechanical.html">Mechanical Engineering</a></li>
+                            <li><a href="dept_IT.html">Information Technology</a></li>
+                            <li><a href="dept_AI&DS.html">Artificial Intelligence and Data Science</a></li>
+                            <li><a href="dept_csbs.html">Computer Science and Business Systems</a></li>
+                            <li><a href="dept_S&H.html">Science and Humanities</a></li>
+                            <li><a href="dept_MBA.html">Masters in business administration</a></li>
                         </ul>
                     </li>
                     <li><a href="academics.html">Academics</a></li>
@@ -433,64 +441,67 @@
             </div>
         </nav>
     </header>
+    <main class="dept-main-content">
 
-    <!-- About Hero Section (Video + Overlap Card) -->
-    <section class="about-hero-section">
-        <div class="hero-video-wrapper">
-            <!-- Utilizing video1.mp4 as requested for background -->
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="assets/videos/video1.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay" style="background:rgba(0,0,0,0.85);"></div>
-            <div
-                style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;flex-direction:column;pointer-events:none;">
-                <div
-                    style="padding:10px 25px; background:rgba(255,215,0,0.9); border-radius:30px; margin-bottom:15px; font-weight:800; color:#111; font-family:'Poppins',sans-serif; letter-spacing:1px; font-size:0.9rem; backdrop-filter:blur(5px); display:flex; align-items:center; gap:8px; box-shadow:0 5px 15px rgba(255,215,0,0.3);">
-                    <i class="fas fa-file-pdf"></i> UGC DOCUMENT COMPLIANCE
-                </div>
-                <h1
-                    style="color:#fff;font-size:3.5rem;font-weight:900;letter-spacing:1px;text-shadow:0 10px 30px rgba(0,0,0,0.8);text-transform:uppercase;text-align:center;">
-                    Act and Statutes</h1>
-                <p
-                    style="color:#ddd; font-family:'Inter',sans-serif; font-size:1.2rem; margin-top:5px; text-transform:uppercase; letter-spacing:3px;">
-                    Public Self Disclosure</p>
-                <div
-                    style="width:100px; height:5px; background:linear-gradient(90deg, #ffd700, transparent); margin-top:20px; border-radius:3px;">
-                </div>
+            <!-- Hero Slider Placeholder -->
+            <div class="dept-main-slider data-aos=" fade-up"">
+                <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=1000&q=80"
+                    alt="Physics Laboratory">
+                <div class="dept-slider-caption">Department of Physics</div>
             </div>
-        </div>
-    </section>
 
-    <section class="page-section" style="padding: 100px 0; background:linear-gradient(to bottom, #ffffff, #f4f7f6);">
-        <div class="container" style="max-width: 1400px;">
-            <div class="section-title text-center" data-aos="fade-down" style="margin-bottom:50px;">
-                <p
-                    style="text-transform:uppercase; letter-spacing:2px; font-weight:700; color:#8b1a2b; font-family:'Inter',sans-serif; margin-bottom:10px; font-size:0.9rem;">
-                    Official Document Viewer</p>
-                <h2
-                    style="font-family:'Poppins',sans-serif; font-size:2.8rem; font-weight:800; color:#111; margin-bottom:15px; text-transform:uppercase;">
-                    Act and Statutes</h2>
-                <div
-                    style="width:120px; height:4px; background:linear-gradient(90deg, #8b1a2b, #e74c3c); margin:0 auto; border-radius:2px;">
-                </div>
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="200"
-                style="background:#fff; padding:20px; border-radius:20px; box-shadow:0 25px 50px rgba(139,26,43,0.1); border:1px solid rgba(0,0,0,0.05); position:relative; overflow:hidden;">
-                <!-- Frame sizing -->
-                <iframe
-                    src="assets/pdfs/public_self_disclosure/engineering-resources_ugc_mandatory_disclosure_about_hei_act_statutes_act_statutes.pdf"
-                    width="100%" height="900px"
-                    style="border:none; border-radius:15px; box-shadow:inset 0 0 20px rgba(0,0,0,0.05); background:#fdfdfd;"></iframe>
-            </div>
-            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
-                <a href="assets/pdfs/public_self_disclosure/engineering-resources_ugc_mandatory_disclosure_about_hei_act_statutes_act_statutes.pdf"
-                    target="_blank"
-                    style="background:#8b1a2b; color:#fff; padding:15px 40px; border-radius:30px; font-family:'Inter',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:1px; text-decoration:none; display:inline-flex; align-items:center; gap:10px; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 10px 20px rgba(139,26,43,0.2);">
-                    Download PDF <i class="fas fa-download"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+            <h1 class="dept-title-red" data-aos="fade-up">DEPARTMENT OF<br>PHYSICS</h1>
+
+            <section class="dept-section" data-aos="fade-up">
+                <h3>ABOUT THE DEPARTMENT</h3>
+                <p>The Department of Physics is a part of the Science and Humanities division at Kingston Engineering College. The department provides foundational physics education to all first-year engineering students, covering essential topics such as Properties of Matter, Optics, Quantum Physics, Semiconductor Physics, and Material Science. The department is dedicated to building strong analytical and problem-solving skills that form the bedrock of engineering education.</p>
+                <p>The department maintains well-equipped physics laboratories where students gain practical experience in optical, electrical, and material characterization techniques. Faculty members are actively engaged in research in areas like photonics, thin film technology, and nanomaterials.</p>
+            </section>
+
+            <section class="dept-section" data-aos="fade-up">
+                <h3>FACULTY</h3>
+                <p>The department has a team of dedicated faculty members with doctoral degrees and research expertise in various branches of Physics including Solid State Physics, Optics, Thin Film Technology, Crystal Growth, Nanoscience, and Materials Science. Faculty members contribute to reputed journals and participate in national and international conferences.</p>
+            </section>
+
+            <section class="dept-section" data-aos="fade-up">
+                <h3>LABORATORIES</h3>
+                <ul>
+                    <li>Engineering Physics Laboratory</li>
+                    <li>Optics Laboratory</li>
+                    <li>Material Science Research Laboratory</li>
+                </ul>
+            </section>
+
+            <section class="dept-section" data-aos="fade-up">
+                <h3>RESEARCH AREAS</h3>
+                <ul>
+                    <li>Thin Film Technology and Surface Science</li>
+                    <li>Crystal Growth and Characterization</li>
+                    <li>Nanoscience and Nanotechnology</li>
+                    <li>Photonics and Optical Materials</li>
+                    <li>Semiconductor Device Physics</li>
+                    <li>Renewable Energy Materials</li>
+                </ul>
+            </section>
+
+            <section class="dept-section" data-aos="fade-up">
+                <h3>SALIENT FEATURES</h3>
+                <ul>
+                    <li>Modern physics laboratories with precision instruments</li>
+                    <li>Research-active faculty with doctoral qualifications</li>
+                    <li>Bridge courses for first-year students</li>
+                    <li>Regular seminars and guest lectures</li>
+                    <li>Science club activities and innovation programs</li>
+                    <li>Interdisciplinary research collaborations</li>
+                </ul>
+            </section>
+
+        </main>
+    </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
     <footer class="main-footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
@@ -510,23 +521,22 @@
                 <ul class="footer-links">
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="admission.html">Admissions</a></li>
-                    <li><a href="#">Departments</a></li>
-                    <li><a href="#">Academics</a></li>
-                    <li><a href="#">Placements</a></li>
-
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="placement_pat.html">Placements</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>PROGRAMMES</h4>
                 <ul class="footer-links">
-                    <li><a href="#">B.E. Computer Science</a></li>
-                    <li><a href="#">B.E. Electronics & Comm.</a></li>
-                    <li><a href="#">B.E. Electrical & Electronics</a></li>
-                    <li><a href="#">B.E. Mechanical</a></li>
-                    <li><a href="#">B.E. Civil Engineering</a></li>
-                    <li><a href="#">B.Tech. Information Technology</a></li>
-                    <li><a href="#">MBA</a></li>
+                    <li><a href="dept_cse.html">B.E. Computer Science</a></li>
+                    <li><a href="dept_ece.html">B.E. Electronics & Comm.</a></li>
+                    <li><a href="dept_eee.html">B.E. Electrical & Electronics</a></li>
+                    <li><a href="dept_mechanical.html">B.E. Mechanical</a></li>
+                    <li><a href="dept_civil.html">B.E. Civil Engineering</a></li>
+                    <li><a href="dept_IT.html">B.Tech. Information Technology</a></li>
+                    <li><a href="dept_MBA.html">MBA</a></li>
                 </ul>
             </div>
 
@@ -552,15 +562,17 @@
 
         <div class="footer-bottom">
             <div class="container flex justify-between align-center">
-                <p>&copy; 2026 Kingston Engineering College. All Rights Reserved.</p>
+                <p>&copy; 2024-25 Kingston Engineering College. All Rights Reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Sitemap</a>
+                    <a href="privacy_policy.html">Privacy Policy</a>
+                    <a href="sitemap.html">Sitemap</a>
                     <a href="#">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
+    
+    
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
