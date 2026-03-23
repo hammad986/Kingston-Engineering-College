@@ -1,0 +1,103 @@
+🚀 STEP — FIX CHATBOT OPEN/CLOSE BEHAVIOR (FINAL)
+
+Chatbot behavior is still incorrect.
+
+-------------------------------------
+
+CURRENT PROBLEMS:
+
+1. Chatbot is ALWAYS open on homepage
+2. ❌ Close button does NOT work
+3. On other pages, chatbot does NOT open
+
+-------------------------------------
+
+FIX REQUIRED (STRICT):
+
+-------------------------------------
+
+1. DEFAULT STATE FIX
+
+- Chatbot must be CLOSED by default on ALL pages
+
+Ensure:
+
+<div id="ai-widget-container">
+  <!-- NO "active" class initially -->
+</div>
+
+-------------------------------------
+
+2. SINGLE TOGGLE SYSTEM (NO CONFLICT)
+
+Use ONLY ONE toggle logic:
+
+function toggleChatbot() {
+  const container = document.getElementById("ai-widget-container");
+  container.classList.toggle("active");
+}
+
+-------------------------------------
+
+3. BUTTON CLICK (OPEN)
+
+document.querySelectorAll(".ai-widget-toggle").forEach(btn => {
+  btn.addEventListener("click", toggleChatbot);
+});
+
+-------------------------------------
+
+4. CLOSE BUTTON (❌ FIX)
+
+Ensure close button exists:
+
+<button class="ai-close-btn">×</button>
+
+Bind event:
+
+document.querySelector(".ai-close-btn").addEventListener("click", () => {
+  document.getElementById("ai-widget-container").classList.remove("active");
+});
+
+-------------------------------------
+
+5. CSS CONTROL (IMPORTANT)
+
+.ai-widget-box {
+  display: none;
+}
+
+#ai-widget-container.active .ai-widget-box {
+  display: flex;
+}
+
+-------------------------------------
+
+6. REMOVE ALL CONFLICTING LOGIC
+
+- Remove duplicate event bindings
+- Remove extra toggle functions
+- Remove auto-open logic
+
+-------------------------------------
+
+7. FINAL TEST (MANDATORY)
+
+✔ Page load → chatbot CLOSED  
+✔ Click button → chatbot OPENS  
+✔ Click ❌ → chatbot CLOSES  
+✔ Works on ALL pages  
+
+-------------------------------------
+
+RULE:
+
+- DO NOT redesign UI
+- ONLY fix behavior
+
+-------------------------------------
+
+After fixing → reply:
+
+✔ Fixed open/close behavior
+✔ Working on all pages
