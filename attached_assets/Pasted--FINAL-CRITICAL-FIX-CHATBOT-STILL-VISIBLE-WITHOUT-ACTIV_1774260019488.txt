@@ -1,0 +1,104 @@
+🚨 FINAL CRITICAL FIX — CHATBOT STILL VISIBLE WITHOUT ACTIVE CLASS
+
+I have provided a screenshot. ANALYZE it properly before coding.
+
+PROBLEM:
+- Chatbot is visible on page load
+- BUT container does NOT have "active" class
+- This means CSS hiding is NOT working
+
+-------------------------------------
+
+STEP 1 — VERIFY DOM STRUCTURE
+
+Check exact structure:
+
+#ai-widget-container
+   └── .ai-widget-box
+
+IMPORTANT:
+The VISIBLE element is .ai-widget-box, not the container
+
+-------------------------------------
+
+STEP 2 — FIX CSS (MANDATORY)
+
+REMOVE any of these WRONG rules if present:
+
+❌ #ai-widget-container { display: none; }
+❌ .ai-widget-container { display: none; }
+
+REPLACE WITH EXACTLY THIS:
+
+.ai-widget-box {
+  display: none !important;
+}
+
+#ai-widget-container.active .ai-widget-box {
+  display: flex !important;
+}
+
+-------------------------------------
+
+STEP 3 — CHECK FOR OVERRIDES
+
+Search FULL project for:
+
+.ai-widget-box
+#ai-widget-container
+
+REMOVE any conflicting rules like:
+- display: block
+- visibility: visible
+- opacity: 1
+
+-------------------------------------
+
+STEP 4 — VERIFY NO INLINE STYLE
+
+Check HTML:
+
+<div class="ai-widget-box" style="display: flex">
+
+IF exists → REMOVE inline style
+
+-------------------------------------
+
+STEP 5 — FORCE TEST
+
+In console:
+
+document.querySelector(".ai-widget-box").style.display = "none"
+
+✔ Must disappear immediately
+
+-------------------------------------
+
+STEP 6 — VERIFY TOGGLE
+
+Click button → should add "active"
+Click ❌ → should remove "active"
+
+-------------------------------------
+
+STEP 7 — FINAL BEHAVIOR
+
+✔ Page load → chatbot HIDDEN  
+✔ Click button → OPEN  
+✔ Click ❌ → CLOSE  
+
+-------------------------------------
+
+IMPORTANT RULES:
+
+❌ Do NOT assume
+❌ Do NOT say "done" without proof
+✔ Show before/after behavior
+✔ Confirm using console
+
+-------------------------------------
+
+If ANY doubt:
+ASK before implementing
+
+Also CHECK the attached screenshot carefully

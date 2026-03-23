@@ -1512,18 +1512,13 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 /* AI Widget Container - Hidden by default, shown when active */
 #ai-widget-container {
-    display: none !important;
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 9999;
 }
 
-#ai-widget-container.active {
-    display: flex !important;
-}
-
-/* AI Widget Box styling */
+/* AI Widget Box - HIDDEN by default */
 .ai-widget-box {
     background: var(--white);
     border-radius: 12px;
@@ -1531,9 +1526,14 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     max-width: 400px;
     height: 500px;
-    display: flex;
+    display: none !important;
     flex-direction: column;
     position: relative;
+}
+
+/* AI Widget Box - SHOWN when container is active */
+#ai-widget-container.active .ai-widget-box {
+    display: flex !important;
 }
 
 
