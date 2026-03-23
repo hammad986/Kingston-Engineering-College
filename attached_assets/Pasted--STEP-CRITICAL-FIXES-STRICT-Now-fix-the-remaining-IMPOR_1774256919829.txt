@@ -1,0 +1,109 @@
+🚀 STEP — CRITICAL FIXES (STRICT)
+
+Now fix the remaining IMPORTANT issues. Do NOT skip anything.
+
+-------------------------------------
+
+1. FIX ABOUT US MENU BUG
+
+- In "About Us" dropdown:
+❌ Remove "UGC Mandatory Committee"
+
+Reason:
+- It belongs to main navbar, NOT inside About Us
+
+-------------------------------------
+
+2. FIX CHATBOT BUTTON (CRITICAL BUG)
+
+Problem:
+- Chatbot opens on homepage
+- But DOES NOT open on other pages
+
+Root Cause:
+- JS event not binding globally OR script not loading on all pages
+
+Fix:
+
+✔ Ensure ai-assistant.js is loaded on ALL pages
+✔ Ensure chatbot toggle function runs after DOM load
+✔ Attach click event properly:
+
+document.querySelector('.ai-widget-btn').addEventListener(...)
+
+✔ If multiple buttons → use querySelectorAll
+
+✔ Ensure no JS error stops execution
+
+Result:
+- Chatbot must open from ANY page
+
+-------------------------------------
+
+3. IMPROVE CHATBOT ACCURACY (VERY IMPORTANT)
+
+Current problem:
+- Answers not relevant
+- Feels like basic keyword bot
+
+Upgrade it to REAL assistant behavior:
+
+✔ Improve knowledge-base.json:
+- Add detailed answers (not 1-line)
+- Add structured info (bullets, data, links)
+
+✔ Improve matching logic:
+- NOT just keyword match
+- Use:
+   - phrase matching
+   - partial matching
+   - fallback intent
+
+✔ Handle:
+- Hinglish queries
+- Typos
+- Random/unexpected questions
+
+✔ If answer not found:
+- DO NOT say "I don't know"
+- Instead:
+   "I couldn't find exact info, but here are related pages"
+
+✔ Always give useful response
+
+-------------------------------------
+
+4. CHATBOT UX IMPROVEMENT
+
+Make it behave like real assistant:
+
+✔ Add:
+- Smart suggestions (chips)
+- Context follow-ups
+- Better greeting (dynamic)
+
+✔ Remove robotic replies
+
+-------------------------------------
+
+5. FINAL VALIDATION
+
+Check:
+
+✔ About menu clean (no wrong items)
+✔ Chatbot opens on ALL pages
+✔ Chatbot gives relevant answers
+✔ No JS errors in console
+
+-------------------------------------
+
+FINAL RULE:
+
+DO NOT redesign UI  
+ONLY fix logic + accuracy + bugs
+
+-------------------------------------
+
+Once ALL fixes are complete → reply ONLY:
+
+DONE
