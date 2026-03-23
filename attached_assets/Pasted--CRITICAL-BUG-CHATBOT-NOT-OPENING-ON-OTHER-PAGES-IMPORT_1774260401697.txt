@@ -1,0 +1,105 @@
+🚨 CRITICAL BUG — CHATBOT NOT OPENING ON OTHER PAGES
+
+IMPORTANT:
+Works on index.html but NOT on other pages.
+
+This means JS binding is NOT happening correctly.
+
+-------------------------------------
+
+STEP 1 — VERIFY SCRIPT LOADING
+
+Check ALL pages:
+
+<script src="assets/js/ai-assistant.js"></script>
+
+✔ MUST be present on EVERY page
+✔ MUST be at bottom before </body>
+
+-------------------------------------
+
+STEP 2 — FIX EVENT BINDING (CRITICAL)
+
+Current issue:
+Buttons exist but click event is NOT attached
+
+REPLACE binding logic with this:
+
+function bindGlobalButtons() {
+    const buttons = document.querySelectorAll(".ai-widget-toggle");
+
+    console.log("[AI] Buttons found:", buttons.length);
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const widget = document.getElementById("ai-widget-container");
+            if (!widget) return;
+
+            widget.classList.toggle("active");
+            console.log("[AI] Toggle clicked →", widget.classList.contains("active"));
+        });
+    });
+}
+
+-------------------------------------
+
+STEP 3 — ENSURE DOM READY
+
+Wrap everything inside:
+
+document.addEventListener("DOMContentLoaded", () => {
+    bindGlobalButtons();
+});
+
+-------------------------------------
+
+STEP 4 — RE-BIND AFTER DELAY (IMPORTANT)
+
+Because header is reused / injected, buttons may load late.
+
+ADD THIS:
+
+setTimeout(() => {
+    bindGlobalButtons();
+}, 1000);
+
+-------------------------------------
+
+STEP 5 — VERIFY BUTTON EXISTS
+
+Check HTML on other pages:
+
+<button class="circle-btn bg-brand-blue ai-widget-toggle">
+
+✔ MUST have ai-widget-toggle class
+✔ ALL pages must have it
+
+-------------------------------------
+
+STEP 6 — DEBUG IN CONSOLE
+
+Open console and check:
+
+[AI] Buttons found: X
+
+✔ If 0 → HTML problem  
+✔ If >0 → JS working  
+
+-------------------------------------
+
+STEP 7 — FINAL BEHAVIOR
+
+✔ All pages → chatbot hidden initially  
+✔ Click button → opens  
+✔ Click ❌ → closes  
+
+-------------------------------------
+
+IMPORTANT:
+
+❌ Do NOT assume  
+❌ Do NOT say "done" without console proof  
+✔ Show logs  
+✔ Show working on 3 different pages  
+
+If unsure → ASK before coding
