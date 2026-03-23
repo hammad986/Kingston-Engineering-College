@@ -294,29 +294,63 @@ class AIAssistant {
         const scores = this.knowledgeBase.intents.map(intent => ({
             intent,
             score: this.scoreIntent(intent, message)
-        })).filter(r => r.score > 0);
+        }));
 
-        if (!scores.length) {
-            // Fallback: return generic "not_found" intent if available
+        // Sort by score (descending)
+        scores.sort((a, b) => b.score - a.score);
+
+        // Only return if score > 0
+        if (scores[0].score === 0) {
             return this.getIntentById('not_found') || null;
         }
         
-        scores.sort((a, b) => b.score - a.score);
         return scores[0].intent;
     }
 
     scoreIntent(intent, message) {
         let total = 0;
         const keywords = intent.keywords || [];
+        const intentId = intent.id || 'unknown';
 
         for (const kw of keywords) {
             const k = kw.toLowerCase();
-            if (message === k) { total += 100; continue; }
-            if (message.includes(k)) { total += 60 + k.length; continue; }
-            const words = k.split(/\s+/);
-            if (words.length > 1 && words.every(w => message.includes(w))) { total += 40; continue; }
-            if (k.length >= 4 && message.includes(k.slice(0, Math.ceil(k.length * 0.75)))) { total += 15; }
+            const msgWords = message.split(/\s+/);
+            const kwWords = k.split(/\s+/);
+
+            // Exact full match
+            if (message === k) {
+                total += 100;
+                continue;
+            }
+
+            // Full keyword appears as substring
+            if (message.includes(k)) {
+                total += 60 + (k.length * 2);
+                continue;
+            }
+
+            // All words in keyword appear in message
+            if (kwWords.every(w => message.includes(w))) {
+                total += 50;
+                continue;
+            }
+
+            // Individual keyword word matches
+            for (const kwWord of kwWords) {
+                if (msgWords.includes(kwWord)) {
+                    total += 30;
+                }
+            }
+
+            // Partial match (80% of keyword)
+            if (k.length >= 4) {
+                const partial = k.slice(0, Math.ceil(k.length * 0.8));
+                if (message.includes(partial)) {
+                    total += 15;
+                }
+            }
         }
+
         return total;
     }
 

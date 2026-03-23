@@ -1,0 +1,116 @@
+🚀 STEP — FIX CHATBOT INTENT LOGIC (CRITICAL BUG)
+
+There is a MAJOR issue:
+
+Chatbot is giving SAME response for ALL queries.
+
+Example:
+- "admissions" → shows About
+- "campus tour" → shows About
+- "placements" → shows About
+
+-------------------------------------
+
+ROOT CAUSE:
+
+Intent detection / scoring logic is BROKEN.
+
+-------------------------------------
+
+FIX REQUIRED:
+
+1. FIX INTENT MATCHING LOGIC
+
+Ensure chatbot selects correct intent based on query:
+
+✔ Compare user input with:
+- intent.keywords
+- intent.phrases
+
+✔ Matching should include:
+- exact match
+- partial match
+- multiple keyword match
+
+-------------------------------------
+
+2. ADD PROPER SCORING SYSTEM
+
+Implement scoring like this:
+
+- Exact phrase match → +100
+- Full keyword match → +60
+- Partial match → +20
+
+Then:
+
+✔ Pick intent with HIGHEST score  
+✔ DO NOT always return first intent  
+✔ DO NOT default to "about"
+
+-------------------------------------
+
+3. REMOVE WRONG DEFAULT FALLBACK
+
+❌ Do NOT always fallback to "about"
+
+Instead:
+
+If no match found:
+✔ Show helpful fallback:
+"I couldn't find exact info, but here are related options..."
+
+-------------------------------------
+
+4. FIX DATA MAPPING ISSUE
+
+Check:
+
+✔ If code uses:
+   intent.response
+
+But JSON uses:
+   content_points
+
+👉 Fix mismatch
+
+Use correct field:
+✔ Either update JS OR JSON
+
+-------------------------------------
+
+5. DEBUG LOGGING (IMPORTANT)
+
+Add temporary console logs:
+
+console.log("Query:", input);
+console.log("Matched Intent:", intent.name);
+console.log("Score:", score);
+
+So we verify correct matching
+
+-------------------------------------
+
+6. TEST CASES (MANDATORY)
+
+After fix, test:
+
+✔ "admission" → admission response  
+✔ "placement" → placement response  
+✔ "campus tour" → campus response  
+✔ "hostel" → hostel response  
+
+Each MUST give DIFFERENT output
+
+-------------------------------------
+
+FINAL RULE:
+
+DO NOT change UI  
+ONLY fix LOGIC
+
+-------------------------------------
+
+After fixing → reply ONLY:
+
+DONE
