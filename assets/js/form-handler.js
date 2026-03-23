@@ -12,18 +12,22 @@
        CONFIGURATION — Fill in your EmailJS credentials below
     ────────────────────────────────────────────────────────────────────── */
     var CONFIG = {
-        PUBLIC_KEY:   'YOUR_PUBLIC_KEY',       // e.g. 'abc123XYZ'
-        SERVICE_ID:   'YOUR_SERVICE_ID',       // e.g. 'service_xxxxxx'
+        PUBLIC_KEY:   '2FdLZxYaYGaIbjWxn',
+        SERVICE_ID:   'service_59qvy8o',
         TEMPLATES: {
-            enquiry:     'YOUR_ENQUIRY_TEMPLATE_ID',     // e.g. 'template_enq001'
-            contact:     'YOUR_CONTACT_TEMPLATE_ID',     // e.g. 'template_con001'
-            application: 'YOUR_APPLICATION_TEMPLATE_ID' // e.g. 'template_app001'
+            enquiry:     'template_kk9qdwk',
+            contact:     'template_mu2vflj',
+            application: 'YOUR_APPLICATION_TEMPLATE_ID' // To be configured later
         }
     };
 
+    function isTemplateConfigured(key) {
+        return CONFIG.TEMPLATES[key] && CONFIG.TEMPLATES[key].indexOf('YOUR_') === -1;
+    }
+
     var CONFIGURED = (
-        CONFIG.PUBLIC_KEY   !== 'YOUR_PUBLIC_KEY' &&
-        CONFIG.SERVICE_ID   !== 'YOUR_SERVICE_ID'
+        CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' &&
+        CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID'
     );
 
     var _emailjsInited = false;
@@ -207,7 +211,7 @@
     function sendEmail(templateKey, params, form, btn) {
         var ready = initEmailJS();
 
-        if (!ready) {
+        if (!ready || !isTemplateConfigured(templateKey)) {
             // Not configured or library missing — store locally
             storeLocally(form.id || templateKey, params);
             showBanner(form, 'success',
