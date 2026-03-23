@@ -1,0 +1,109 @@
+🚨 CRITICAL BUG — CHATBOT UI STILL BROKEN ON MOST PAGES
+
+I have attached a screenshot — ANALYZE it carefully.
+
+Your previous claim is WRONG.
+UI is NOT consistent.
+
+-------------------------------------
+
+PROBLEM:
+
+index.html → UI correct  
+about.html → UI broken  
+
+This means:
+CSS is NOT applied correctly on other pages.
+
+-------------------------------------
+
+STEP 1 — VERIFY CSS ORDER (CRITICAL)
+
+Ensure this EXACT order on ALL pages:
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/ai-assistant.css">
+
+✔ ai-assistant.css MUST be LAST
+
+-------------------------------------
+
+STEP 2 — FIX PATH ISSUES
+
+Check pages in folders:
+
+If page is inside subfolder:
+
+❌ assets/css/ai-assistant.css  
+✔ ../assets/css/ai-assistant.css  
+
+Fix ALL incorrect paths
+
+-------------------------------------
+
+STEP 3 — VERIFY CSS LOADING (MANDATORY)
+
+Open console and run:
+
+document.styleSheets
+
+Check if ai-assistant.css is loaded
+
+-------------------------------------
+
+STEP 4 — FORCE STYLE CHECK
+
+Run:
+
+getComputedStyle(document.querySelector(".ai-widget-box"))
+
+If styles missing → CSS NOT applied
+
+-------------------------------------
+
+STEP 5 — CHECK CSS OVERRIDES
+
+Search in ALL CSS files for:
+
+.ai-widget-box
+.ai-widget-header
+
+REMOVE any conflicting rules like:
+
+display: block
+background: none
+position: static
+
+-------------------------------------
+
+STEP 6 — VERIFY NO INLINE STYLE
+
+Check HTML:
+
+<div class="ai-widget-box" style="...">
+
+REMOVE inline styles if present
+
+-------------------------------------
+
+STEP 7 — FINAL VALIDATION
+
+Show screenshots of:
+
+✔ index.html  
+✔ about.html  
+✔ facilities.html  
+
+ALL must look IDENTICAL
+
+-------------------------------------
+
+IMPORTANT:
+
+❌ Do NOT assume  
+❌ Do NOT say "fixed" without proof  
+✔ Compare visually  
+✔ Ensure pixel-level same UI  
+
+If ANY doubt → ASK before coding
