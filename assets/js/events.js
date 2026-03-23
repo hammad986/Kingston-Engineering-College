@@ -1,8 +1,8 @@
 /**
  * Kingston Engineering College — Events System
  * Loads events from data/events.json and renders:
- *  - Homepage Swiper slider  (#events-wrapper)
- *  - Events page tabs + grid (#events-grid)
+ *  - Homepage Swiper slider  (#events-wrapper) - highlights nearest upcoming
+ *  - Events page tabs + grid (#events-grid) - badges nearest with "Next Event"
  */
 
 const KEC_EVENTS = (() => {
@@ -56,6 +56,14 @@ const KEC_EVENTS = (() => {
         return item.fallback_image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80';
     }
 
+    /* ── Find nearest upcoming event ────────────────────────── */
+    function findNearestUpcoming(allEvents) {
+        const upcoming = allEvents
+            .filter(e => isUpcoming(e))
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
+        return upcoming.length > 0 ? upcoming[0] : null;
+    }
+
     /* ── Fetch ─────────────────────────────────────────────── */
     async function fetchEvents() {
         const res = await fetch(JSON_URL);
@@ -72,30 +80,34 @@ const KEC_EVENTS = (() => {
         try { allEvents = await fetchEvents(); }
         catch (e) { console.warn('[KEC Events]', e); return; }
 
-        // Show only featured upcoming events (max 4) for homepage
-        const upcoming = allEvents
-            .filter(e => isUpcoming(e) && e.featured)
-            .sort((a, b) => new Date(a.date) - new Date(b.date))
-            .slice(0, 4);
-
-        // If fewer than 2 featured upcoming, pad with any upcoming
-        const toShow = upcoming.length >= 2
-            ? upcoming
-            : allEvents.filter(e => isUpcoming(e)).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4);
+        // Show featured upcoming events first, then any upcoming to reach 4 total
+        const upcoming = allEvents.filter(e => isUpcoming(e)).sort((a, b) => new Date(a.date) - new Date(b.date));
+        const featured = upcoming.filter(e => e.featured);
+        const toShow = featured.length >= 4
+            ? featured.slice(0, 4)
+            : [...featured, ...upcoming.filter(e => !e.featured)].slice(0, 4);
 
         if (!toShow.length) {
             wrapper.closest('.events-section') && (wrapper.closest('.events-section').style.display = 'none');
             return;
         }
 
-        wrapper.innerHTML = toShow.map(item => `
+        // Find nearest event to highlight on homepage
+        const nearestUpcoming = findNearestUpcoming(allEvents);
+        const nearestId = nearestUpcoming ? nearestUpcoming.id : null;
+
+        wrapper.innerHTML = toShow.map((item, idx) => {
+            const isNearest = item.id === nearestId;
+            const isNearest_style = isNearest ? 'border:3px solid #ff9800;box-shadow:0 0 20px rgba(255,152,0,0.3);transform:scale(1.02);' : '';
+            return `
             <div class="swiper-slide">
-                <div class="news-card event-card">
+                <div class="news-card event-card" style="${isNearest_style}transition:all 0.3s;">
                     <div class="news-card-img-wrap" style="position:relative;overflow:hidden;height:180px;">
                         <img src="${imgSrc(item)}"
                              alt="${item.title}"
                              style="width:100%;height:100%;object-fit:cover;">
                         <span class="news-cat-badge" style="background:${catColor(item.category)}">${item.category}</span>
+                        ${isNearest ? '<span style="position:absolute;top:10px;right:10px;background:#ff9800;color:#fff;font-size:0.68rem;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:0.4px;text-transform:uppercase;z-index:2;">Next Event</span>' : ''}
                         ${item.registrations_open ? '<span class="event-reg-badge">Registration Open</span>' : ''}
                     </div>
                     <div class="news-card-body">
@@ -104,13 +116,14 @@ const KEC_EVENTS = (() => {
                         <p class="news-card-excerpt" style="font-size:0.8rem;">
                             <i class="fa-solid fa-location-dot" style="color:#c0392b;margin-right:4px;"></i>${item.location}
                         </p>
-                        <a href="events.html?id=${item.id}" class="news-read-more">
+                        <a href="event-detail.html?slug=${item.slug}" class="news-read-more">
                             ${item.registrations_open ? 'Register Now' : 'View Details'}
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 </div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
 
         new Swiper('#events-slider', {
             slidesPerView: 1,
@@ -138,6 +151,10 @@ const KEC_EVENTS = (() => {
         // Sort upcoming asc, past desc
         const upcoming = allEvents.filter(e => isUpcoming(e)).sort((a, b) => new Date(a.date) - new Date(b.date));
         const past     = allEvents.filter(e => !isUpcoming(e)).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Find nearest upcoming event
+        const nearestUpcoming = upcoming.length > 0 ? upcoming[0] : null;
+        const nearestId = nearestUpcoming ? nearestUpcoming.id : null;
 
         let activeTab     = 'upcoming';
         let activeCategory = 'All';
@@ -210,17 +227,17 @@ const KEC_EVENTS = (() => {
                 const ctaLabel = upcoming && item.registrations_open ? 'Register Now'
                                : upcoming ? 'View Details'
                                : 'View Details';
-                const ctaIcon  = upcoming && item.registrations_open
-                               ? 'fa-circle-check'
-                               : 'fa-arrow-right';
+                const isNearest = activeTab === 'upcoming' && item.id === nearestId;
+                const nearestBadge = isNearest ? '<span style="position:absolute;top:12px;right:12px;background:#ff9800;color:#fff;font-size:0.68rem;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:0.4px;text-transform:uppercase;z-index:3;">Next Event</span>' : '';
 
                 return `
-                <article class="blog-news-card event-page-card${item.featured ? ' featured' : ''}" data-aos="fade-up" data-aos-delay="${(idx % 3) * 80}">
-                    <a href="events.html?id=${item.id}" class="blog-news-img-link">
-                        <div class="blog-news-img-wrap">
+                <article class="blog-news-card event-page-card${item.featured ? ' featured' : ''}${isNearest ? ' nearest-event' : ''}" data-aos="fade-up" data-aos-delay="${(idx % 3) * 80}" style="${isNearest ? 'border:2px solid #ff9800;' : ''}">
+                    <a href="event-detail.html?slug=${item.slug}" class="blog-news-img-link">
+                        <div class="blog-news-img-wrap" style="position:relative;">
                             <img src="${imgSrc(item)}" alt="${item.title}" loading="lazy">
                             <span class="news-cat-badge" style="background:${catColor(item.category)}">${item.category}</span>
                             ${item.featured ? '<span class="news-featured-badge">Featured</span>' : ''}
+                            ${nearestBadge}
                             ${upcoming && item.registrations_open ? '<span class="event-reg-badge event-reg-badge--card">Registration Open</span>' : ''}
                         </div>
                     </a>
@@ -229,7 +246,7 @@ const KEC_EVENTS = (() => {
                             <i class="fa-regular fa-calendar"></i> ${formatDateRange(item)}
                         </span>
                         <h2 class="blog-news-title">
-                            <a href="events.html?id=${item.id}">${item.title}</a>
+                            <a href="event-detail.html?slug=${item.slug}">${item.title}</a>
                         </h2>
                         <p class="blog-news-excerpt" style="font-size:0.88rem;color:#666;margin-bottom:6px;">
                             <i class="fa-solid fa-location-dot" style="color:#c0392b;margin-right:5px;"></i>${item.location}
@@ -239,8 +256,8 @@ const KEC_EVENTS = (() => {
                             <div class="news-tags">
                                 ${(item.tags || []).slice(0, 3).map(t => `<span class="news-tag">${t}</span>`).join('')}
                             </div>
-                            <a href="events.html?id=${item.id}" class="news-read-more${upcoming && item.registrations_open ? ' event-reg-cta' : ''}">
-                                <i class="fa-solid ${ctaIcon} text-xs"></i> ${ctaLabel}
+                            <a href="event-detail.html?slug=${item.slug}" class="news-read-more${upcoming && item.registrations_open ? ' event-reg-cta' : ''}">
+                                <i class="fa-solid ${upcoming && item.registrations_open ? 'fa-circle-check' : 'fa-arrow-right'} text-xs"></i> ${ctaLabel}
                             </a>
                         </div>
                     </div>

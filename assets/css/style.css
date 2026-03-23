@@ -753,6 +753,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 .event-reg-cta { color: #27ae60 !important; }
 .event-reg-cta:hover { color: #1e8449 !important; }
+.nearest-event {
+    box-shadow: 0 0 20px rgba(255,152,0,0.2) !important;
+}
+.nearest-event:hover {
+    box-shadow: 0 12px 36px rgba(255,152,0,0.25) !important;
+}
 
 /* ==========================================================================
    EXPLORE CAMPUS
