@@ -1510,18 +1510,15 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================================================
    AI WIDGET STYLES
    ========================================================================== */
-.ai-widget-hidden {
-    display: none;
-    opacity: 0;
-    pointer-events: none;
+/* AI Widget Container - Fixed position */
+#ai-widget-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-.ai-widget-container.active {
-    display: flex;
-    opacity: 1;
-    pointer-events: auto;
-}
-
+/* AI Widget Box - Hidden by default */
 .ai-widget-box {
     background: var(--white);
     border-radius: 12px;
@@ -1529,16 +1526,13 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     max-width: 400px;
     height: 500px;
-    display: flex;
+    display: none;
     flex-direction: column;
-    z-index: 9999;
     position: relative;
 }
 
-#ai-widget-container {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    z-index: 9998;
+/* Show widget box when container is active */
+#ai-widget-container.active .ai-widget-box {
+    display: flex;
 }
 

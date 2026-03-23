@@ -1,0 +1,118 @@
+🚀 FINAL TASK — CHATBOT NOT OPENING (FULL SYSTEM FIX)
+
+The chatbot is STILL NOT opening.
+
+Previous attempts FAILED.
+
+You must now FIX the COMPLETE system end-to-end.
+
+-------------------------------------
+
+MANDATORY RULE:
+
+- Do NOT assume anything
+- Do NOT partially fix
+- You MUST test full flow
+
+-------------------------------------
+
+STEP 1 — VERIFY COMPLETE STRUCTURE
+
+Ensure ALL of these exist on page:
+
+1. Button:
+<button class="ai-widget-toggle">
+
+2. Container:
+<div id="ai-widget-container">
+
+3. Chatbox:
+<div class="ai-widget-box">
+
+If ANY missing → CREATE properly
+
+-------------------------------------
+
+STEP 2 — FIX CSS (CRITICAL)
+
+Ensure EXACT behavior:
+
+#ai-widget-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.ai-widget-box {
+  display: none;
+}
+
+#ai-widget-container.active .ai-widget-box {
+  display: block;
+}
+
+-------------------------------------
+
+STEP 3 — FIX JAVASCRIPT (NO ERRORS)
+
+Use EXACT working logic:
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const buttons = document.querySelectorAll(".ai-widget-toggle");
+  const container = document.getElementById("ai-widget-container");
+
+  if (!container) {
+    console.error("Chatbot container missing");
+    return;
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      console.log("CHATBOT CLICKED");
+      container.classList.toggle("active");
+    });
+  });
+
+});
+
+-------------------------------------
+
+STEP 4 — FORCE TEST (MANDATORY)
+
+You MUST test:
+
+1. Click button → popup MUST appear
+2. Click again → popup MUST hide
+3. Works on:
+   - index.html
+   - academics.html
+   - any other page
+
+-------------------------------------
+
+STEP 5 — DEBUG PROOF (REQUIRED)
+
+Provide:
+
+✔ Screenshot of popup OPEN  
+✔ Console log showing "CHATBOT CLICKED"  
+✔ Confirm no JS errors  
+
+-------------------------------------
+
+IMPORTANT:
+
+- If popup does not open → FIX AGAIN
+- DO NOT say DONE without working proof
+
+-------------------------------------
+
+FINAL OUTPUT FORMAT:
+
+✔ Root cause:
+✔ What was wrong:
+✔ Fix applied:
+✔ Proof (console + visual):
+✔ Confirm working:

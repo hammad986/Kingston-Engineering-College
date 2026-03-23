@@ -145,23 +145,21 @@ class AIAssistant {
             });
         });
 
-        // Widget toggle
-        const toggle = document.querySelector('.ai-widget-toggle');
+        // Close button handler (toggle binding is handled by bindGlobalButtons)
         const widget = document.getElementById('ai-widget-container');
         const close = document.getElementById('ai-widget-close');
 
-        if (toggle && widget) {
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                widget.classList.toggle('active');
-                if (widget.classList.contains('active')) {
-                    const input = document.getElementById('ai-input');
-                    if (input) setTimeout(() => input.focus(), 300);
-                }
-            });
-        }
         if (close && widget) {
             close.addEventListener('click', () => widget.classList.remove('active'));
+        }
+
+        // Auto-focus input when widget opens
+        if (widget) {
+            widget.addEventListener('click', (e) => {
+                if (widget.classList.contains('active') && e.target.id === 'ai-input') {
+                    e.target.focus();
+                }
+            });
         }
 
         // Clear chat button (fullpage only)
