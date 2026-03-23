@@ -735,6 +735,26 @@ h1, h2, h3, h4, h5, h6 {
 .news-read-more:hover { color: var(--brand-red, #c0392b); }
 
 /* ==========================================================================
+   EVENTS — homepage slider badge
+   ========================================================================== */
+.event-reg-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #27ae60;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    z-index: 2;
+}
+.event-reg-cta { color: #27ae60 !important; }
+.event-reg-cta:hover { color: #1e8449 !important; }
+
+/* ==========================================================================
    EXPLORE CAMPUS
    ========================================================================== */
 .explore-section {
