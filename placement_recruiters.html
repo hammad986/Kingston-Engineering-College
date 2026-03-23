@@ -446,44 +446,100 @@
         </div>
     </section>
 
-    <section class="page-section" style="padding: 70px 0;">
-        <div class="container" data-aos="fade-up">
-            <h1 class="msg-heading"
-                style="font-family:'Poppins',sans-serif; font-size:2.6rem; font-weight:800; color:#8b1a2b; margin-bottom:10px;">
-                Corporate Recruiters</h1>
-            <div class="msg-divider" style="width:200px; height:3px; background:#8b1a2b; margin-bottom:40px;"></div>
+    <style>
+        /* ---- RECRUITERS SECTION ---- */
+        #recruiters-section { padding: 70px 0; background: #fff; }
+        .pr-section-head { text-align:center; margin-bottom:40px; }
+        .pr-section-head h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; font-weight:800; color:#8b1a2b; margin-bottom:10px; }
+        .pr-section-head p { color:#555; font-size:1rem; font-family:'Inter',sans-serif; }
+        .pr-divider { width:80px; height:4px; background:#003366; margin:14px auto 0; border-radius:2px; }
+        .pr-filters { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
+        .pr-filter-btn {
+            padding:8px 20px; border:2px solid #ddd; border-radius:20px;
+            background:#fff; color:#444; font-weight:600; font-size:0.88rem;
+            font-family:'Poppins',sans-serif; cursor:pointer; transition:all 0.25s;
+        }
+        .pr-filter-btn:hover { border-color:#003366; color:#003366; }
+        .pr-filter-btn.active { background:#003366; border-color:#003366; color:#fff; }
+        #recruiters-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:22px;
+        }
+        .pr-card {
+            background:#fff; border:1px solid #eaeaea; border-radius:12px;
+            padding:22px 18px 18px; text-align:center;
+            box-shadow:0 4px 16px rgba(0,0,0,0.06); transition:all 0.25s;
+        }
+        .pr-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,0.12); border-color:#003366; }
+        .pr-logo-wrap { height:64px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+        .pr-logo { max-width:130px; max-height:56px; object-fit:contain; }
+        .pr-initials {
+            width:60px; height:60px; border-radius:50%; background:#003366; color:#fff;
+            font-weight:800; font-size:1.2rem; font-family:'Poppins',sans-serif;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .pr-company-name { font-weight:700; font-size:0.95rem; color:#111; font-family:'Poppins',sans-serif; margin-bottom:6px; line-height:1.3; }
+        .pr-badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.72rem; font-weight:600; font-family:'Inter',sans-serif; margin-bottom:8px; }
+        .pr-badge-tech { background:#e8f0fe; color:#1a56db; }
+        .pr-badge-consulting { background:#fff3e0; color:#e65100; }
+        .pr-badge-finance { background:#e8f5e9; color:#2e7d32; }
+        .pr-roles { font-size:0.8rem; color:#666; font-family:'Inter',sans-serif; margin-bottom:4px; line-height:1.4; }
+        .pr-pkg { font-size:0.82rem; font-weight:700; color:#8b1a2b; font-family:'Inter',sans-serif; }
+        #recruiters-empty { display:none; text-align:center; color:#999; padding:60px 0; font-family:'Inter',sans-serif; }
+        .pr-legacy-wrap { margin-top:60px; }
+        .pr-legacy-wrap h3 { font-family:'Poppins',sans-serif; font-size:1.15rem; font-weight:700; color:#111; margin-bottom:16px; }
+        .pr-legacy-list { column-count:2; column-gap:30px; list-style:disc; padding-left:20px; color:#555; font-size:0.9rem; line-height:1.9; font-family:'Inter',sans-serif; }
+        @media(max-width:600px) { .pr-legacy-list { column-count:1; } #recruiters-grid { grid-template-columns:1fr 1fr; } }
+    </style>
 
-            <ul
-                style="column-count: 2; column-gap: 40px; list-style: disc; padding-left: 20px; color: #444; font-size:1rem; line-height:1.8; font-family:'Inter',sans-serif;">
-                <li style="margin-bottom:10px;">CODOID SYSTEMS, TIDEL PARK, CHENNAI</li>
-                <li style="margin-bottom:10px;">RELEVANTZ TECHONOLOGY SERVICES, CHENNAI</li>
-                <li style="margin-bottom:10px;">AIR MEDIA BROADCAST SOLUTIONS (P), LTD, COIMBATORE</li>
-                <li style="margin-bottom:10px;">TOP FRESHERS TECHNOLOGIES.PVT.LTD, CHENNAI</li>
-                <li style="margin-bottom:10px;">PRIMETEC AUTOMOTIVE PARTS PVT LTD, CHENNAI</li>
-                <li style="margin-bottom:10px;">MILKYWAY CELL TECH, CHENNAI</li>
-                <li style="margin-bottom:10px;">CAPARO ENGINEERING INDIA LIMITED, CHENNAI</li>
-                <li style="margin-bottom:10px;">CRUD OPERATION PRIVATED LIMITED, CHENNAI</li>
-                <li style="margin-bottom:10px;">METRO COMPOSITES, CHENNAI</li>
-                <li style="margin-bottom:10px;">AVEON INFOTECH PRIVATE LIMITED, COIMBATORE</li>
-                <li style="margin-bottom:10px;">TECHFULLY.PVT.LTD, BANGALORE</li>
-                <li style="margin-bottom:10px;">EVR ELECTRICALS PRIVATE LTD, CHENNAI</li>
-                <li style="margin-bottom:10px;">INFOGRO TECHNOLOGY, CHENNAI</li>
-                <li style="margin-bottom:10px;">SHREE ABIRAMI ENGINEERING PRIVATE LIMITED, CHENNAI</li>
-                <li style="margin-bottom:10px;">SELVI SOFTWARE TECHNOLOGIES PVT LTD, VELLORE</li>
-                <li style="margin-bottom:10px;">KAASHIV INFOTECH, CHENNAI</li>
-                <li style="margin-bottom:10px;">SHIA#SH INFO SOLUTION PRIVATE LIMITED, CHENNAI</li>
-                <li style="margin-bottom:10px;">ICE STEEL1 INDIA PVT LTD, RANIPET</li>
-                <li style="margin-bottom:10px;">IMS LEARNING RESOURCE PRIVATE LTD, VELLORE</li>
-                <li style="margin-bottom:10px;">DIGIDOC SOLUTIONS, VELLORE</li>
-                <li style="margin-bottom:10px;">FOCUS LOGIC IT SERVICES, RANIPET</li>
-                <li style="margin-bottom:10px;">FACT ENTRY DATA SOLUTIONS, VELLORE</li>
-                <li style="margin-bottom:10px;">VIS EDUCATION AND TRAINING COMPANY, VELLORE</li>
-                <li style="margin-bottom:10px;">NITTR, Chennai</li>
-                <li style="margin-bottom:10px;">TechByHeart, Kochi</li>
-                <li style="margin-bottom:10px;">VEI’s technologies, Chennai</li>
-            </ul>
+    <section id="recruiters-section">
+        <div class="container">
+            <div class="pr-section-head" data-aos="fade-up">
+                <h2>Corporate Recruiters</h2>
+                <p>Leading companies that have recruited Kingston graduates</p>
+                <div class="pr-divider"></div>
+            </div>
+            <div class="pr-filters" data-aos="fade-up">
+                <button class="pr-filter-btn active" data-cat="All">All</button>
+                <button class="pr-filter-btn" data-cat="Tech">Technology</button>
+                <button class="pr-filter-btn" data-cat="Finance">Finance</button>
+                <button class="pr-filter-btn" data-cat="Consulting">Consulting</button>
+            </div>
+            <div id="recruiters-grid" data-aos="fade-up">
+                <p style="text-align:center;color:#999;padding:40px 0;font-family:'Inter',sans-serif;">Loading recruiters...</p>
+            </div>
+            <div id="recruiters-empty"><i class="fa-solid fa-building" style="font-size:2rem;display:block;margin-bottom:10px;"></i>No recruiters found for this category.</div>
+            <div class="pr-legacy-wrap" data-aos="fade-up">
+                <h3>Also Recruited From</h3>
+                <ul class="pr-legacy-list">
+                    <li>Codoid Systems, Tidel Park, Chennai</li>
+                    <li>Relevantz Technology Services, Chennai</li>
+                    <li>Air Media Broadcast Solutions, Coimbatore</li>
+                    <li>Top Freshers Technologies Pvt. Ltd., Chennai</li>
+                    <li>Primetec Automotive Parts Pvt. Ltd., Chennai</li>
+                    <li>Milkyway Cell Tech, Chennai</li>
+                    <li>Caparo Engineering India Limited, Chennai</li>
+                    <li>Metro Composites, Chennai</li>
+                    <li>Aveon Infotech Private Limited, Coimbatore</li>
+                    <li>Techfully Pvt. Ltd., Bangalore</li>
+                    <li>EVR Electricals Private Ltd., Chennai</li>
+                    <li>Infogro Technology, Chennai</li>
+                    <li>Shree Abirami Engineering Pvt. Ltd., Chennai</li>
+                    <li>Selvi Software Technologies Pvt. Ltd., Vellore</li>
+                    <li>Kaashiv Infotech, Chennai</li>
+                    <li>IMS Learning Resources Pvt. Ltd., Vellore</li>
+                    <li>Digidoc Solutions, Vellore</li>
+                    <li>Focus Logic IT Services, Ranipet</li>
+                    <li>Fact Entry Data Solutions, Vellore</li>
+                    <li>VIS Education and Training Company, Vellore</li>
+                    <li>NITTR, Chennai</li>
+                    <li>TechByHeart, Kochi</li>
+                    <li>VEI Technologies, Chennai</li>
+                </ul>
+            </div>
         </div>
     </section>
+
+    
     <footer class="main-footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
@@ -559,6 +615,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/placement-recruiters.js"></script>
 </body>
 
 </html>

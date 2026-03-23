@@ -492,7 +492,110 @@
             background: #6a1120;
             color: #fff;
         }
+
+        /* ---- PLACEMENT STATS ---- */
+        #placement-stats-section { background: #f4f6fb; padding: 70px 0; }
+        .ps-section-head { text-align: center; margin-bottom: 50px; }
+        .ps-section-head h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; font-weight:800; color:#003366; margin-bottom:10px; }
+        .ps-section-head p  { color:#555; font-size:1rem; font-family:'Inter',sans-serif; }
+        .ps-divider { width:80px; height:4px; background:#8b1a2b; margin:14px auto 0; border-radius:2px; }
+        .ps-year-tabs { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
+        .ps-year-btn {
+            padding:9px 22px; border:2px solid #003366; border-radius:25px;
+            background:transparent; color:#003366; font-weight:600; font-size:0.9rem;
+            font-family:'Poppins',sans-serif; cursor:pointer; transition:all 0.25s;
+        }
+        .ps-year-btn:hover, .ps-year-btn.active { background:#003366; color:#fff; }
+        .ps-kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:22px; margin-bottom:50px; }
+        .ps-kpi-card {
+            background:#fff; border-radius:14px; padding:28px 18px;
+            text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.07);
+            border-top:4px solid #003366; transition:transform 0.25s;
+        }
+        .ps-kpi-card:hover { transform:translateY(-4px); }
+        .ps-kpi-card.red-top { border-top-color:#8b1a2b; }
+        .ps-kpi-icon { font-size:1.8rem; margin-bottom:10px; color:#003366; }
+        .ps-kpi-card.red-top .ps-kpi-icon { color:#8b1a2b; }
+        .ps-kpi-value { font-size:2rem; font-weight:800; color:#111; font-family:'Poppins',sans-serif; line-height:1.1; }
+        .ps-kpi-label { font-size:0.82rem; color:#666; margin-top:6px; font-family:'Inter',sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.5px; }
+        .ps-dept-wrap { background:#fff; border-radius:14px; padding:32px; box-shadow:0 4px 20px rgba(0,0,0,0.06); overflow-x:auto; }
+        .ps-dept-wrap h3 { font-family:'Poppins',sans-serif; font-size:1.2rem; font-weight:700; color:#111; margin-bottom:22px; }
+        .ps-dept-table { width:100%; border-collapse:collapse; font-family:'Inter',sans-serif; font-size:0.93rem; }
+        .ps-dept-table th { background:#003366; color:#fff; padding:11px 14px; text-align:left; font-weight:600; font-size:0.82rem; letter-spacing:0.5px; }
+        .ps-dept-table th:first-child { border-radius:6px 0 0 0; }
+        .ps-dept-table th:last-child  { border-radius:0 6px 0 0; }
+        .ps-dept-table td { padding:11px 14px; border-bottom:1px solid #f0f0f0; color:#333; }
+        .ps-dept-table tr:hover td { background:#f9f9ff; }
+        .ps-dept-name { font-weight:600; color:#003366; }
+        .ps-bar-wrap { display:inline-block; width:80px; height:7px; background:#e8e8e8; border-radius:4px; vertical-align:middle; margin-right:8px; }
+        .ps-bar { height:100%; background:#8b1a2b; border-radius:4px; }
+        .ps-bar-label { font-weight:700; color:#8b1a2b; }
     </style>
+
+    <!-- ===== PLACEMENT STATISTICS SECTION ===== -->
+    <section id="placement-stats-section">
+        <div class="container">
+            <div class="ps-section-head" data-aos="fade-up">
+                <h2>Placement Statistics</h2>
+                <p>Year-wise placement performance across all departments</p>
+                <div class="ps-divider"></div>
+            </div>
+
+            <div class="ps-year-tabs" data-aos="fade-up">
+                <button class="ps-year-btn active" data-year="2024-25">2024–25</button>
+                <button class="ps-year-btn" data-year="2023-24">2023–24</button>
+                <button class="ps-year-btn" data-year="2022-23">2022–23</button>
+            </div>
+
+            <div class="ps-kpi-grid" data-aos="fade-up">
+                <div class="ps-kpi-card red-top">
+                    <div class="ps-kpi-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="ps-kpi-value" id="stat-percent">-</div>
+                    <div class="ps-kpi-label">Placement Rate</div>
+                </div>
+                <div class="ps-kpi-card">
+                    <div class="ps-kpi-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="ps-kpi-value" id="stat-avg">-</div>
+                    <div class="ps-kpi-label">Average Package</div>
+                </div>
+                <div class="ps-kpi-card red-top">
+                    <div class="ps-kpi-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <div class="ps-kpi-value" id="stat-highest">-</div>
+                    <div class="ps-kpi-label">Highest Package</div>
+                </div>
+                <div class="ps-kpi-card">
+                    <div class="ps-kpi-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <div class="ps-kpi-value" id="stat-companies">-</div>
+                    <div class="ps-kpi-label">Companies Visited</div>
+                </div>
+                <div class="ps-kpi-card red-top">
+                    <div class="ps-kpi-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div class="ps-kpi-value" id="stat-students">-</div>
+                    <div class="ps-kpi-label">Students Placed</div>
+                </div>
+            </div>
+
+            <div class="ps-dept-wrap" data-aos="fade-up">
+                <h3><i class="fa-solid fa-table" style="color:#8b1a2b;margin-right:8px;"></i> Department-wise Breakdown</h3>
+                <table class="ps-dept-table">
+                    <thead>
+                        <tr>
+                            <th>Department</th>
+                            <th>Eligible</th>
+                            <th>Placed</th>
+                            <th>Placement %</th>
+                            <th>Avg Package</th>
+                            <th>Highest Package</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dept-tbody">
+                        <tr><td colspan="6" style="text-align:center;color:#999;padding:30px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <section class="page-section" style="padding: 70px 0;">
         <div class="container" data-aos="fade-up">
             <h1 class="msg-heading"
@@ -607,6 +710,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/placement-stats.js"></script>
 </body>
 
 </html>

@@ -513,6 +513,64 @@
             </div>
         </div>
     </section>
+
+    <style>
+        /* ---- SUCCESS STORIES ---- */
+        #success-stories-section { background:#f4f6fb; padding:70px 0; }
+        .pst-section-head { text-align:center; margin-bottom:50px; }
+        .pst-section-head h2 { font-family:'Poppins',sans-serif; font-size:2.2rem; font-weight:800; color:#003366; margin-bottom:10px; }
+        .pst-section-head p { color:#555; font-size:1rem; font-family:'Inter',sans-serif; }
+        .pst-divider { width:80px; height:4px; background:#8b1a2b; margin:14px auto 0; border-radius:2px; }
+        #stories-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:28px;
+        }
+        .pst-card {
+            background:#fff; border-radius:14px; padding:28px;
+            box-shadow:0 4px 20px rgba(0,0,0,0.07); border:1px solid #eaeaea;
+            transition:transform 0.25s, box-shadow 0.25s;
+        }
+        .pst-card:hover { transform:translateY(-5px); box-shadow:0 12px 36px rgba(0,0,0,0.12); }
+        .pst-top { display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; }
+        .pst-photo-wrap { flex-shrink:0; }
+        .pst-photo { width:64px; height:64px; border-radius:50%; object-fit:cover; border:3px solid #003366; }
+        .pst-initials {
+            width:64px; height:64px; border-radius:50%; background:#003366; color:#fff;
+            font-weight:800; font-size:1.3rem; font-family:'Poppins',sans-serif;
+            display:flex; align-items:center; justify-content:center; border:3px solid #003366;
+        }
+        .pst-header { flex:1; }
+        .pst-name { font-weight:700; font-size:1.05rem; color:#111; font-family:'Poppins',sans-serif; margin-bottom:4px; }
+        .pst-meta { font-size:0.82rem; color:#666; font-family:'Inter',sans-serif; margin-bottom:6px; }
+        .pst-stars { color:#f7b731; font-size:0.85rem; letter-spacing:2px; }
+        .pst-quote {
+            font-size:0.92rem; line-height:1.8; color:#444; font-family:'Inter',sans-serif;
+            border-left:3px solid #8b1a2b; padding-left:14px; margin:0 0 18px; font-style:italic;
+        }
+        .pst-placement { display:flex; flex-wrap:wrap; gap:10px; }
+        .pst-company, .pst-role, .pst-package {
+            font-size:0.82rem; font-family:'Inter',sans-serif; font-weight:600;
+            padding:5px 12px; border-radius:20px;
+        }
+        .pst-company { background:#e8f0fe; color:#1a56db; }
+        .pst-role    { background:#f0f0f0; color:#333; }
+        .pst-package { background:#fdecea; color:#8b1a2b; }
+        @media(max-width:600px) { #stories-grid { grid-template-columns:1fr; } }
+    </style>
+
+    <!-- ===== SUCCESS STORIES SECTION ===== -->
+    <section id="success-stories-section">
+        <div class="container">
+            <div class="pst-section-head" data-aos="fade-up">
+                <h2>Student Success Stories</h2>
+                <p>Hear from our graduates who are thriving in their careers</p>
+                <div class="pst-divider"></div>
+            </div>
+            <div id="stories-grid" data-aos="fade-up">
+                <p style="text-align:center;color:#999;padding:40px 0;font-family:'Inter',sans-serif;">Loading stories...</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="main-footer">
         <div class="container footer-grid">
             <div class="footer-col about-col">
@@ -588,6 +646,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/placement-stories.js"></script>
 </body>
 
 </html>
