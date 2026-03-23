@@ -1,0 +1,117 @@
+🚀 STEP — CHATBOT NOT OPENING (FORCE DEBUG)
+
+The chatbot STILL does NOT open.
+
+DO NOT assume it is fixed. You MUST debug properly.
+
+-------------------------------------
+
+1. VERIFY SCRIPT LOAD (CRITICAL)
+
+Check on ANY page:
+
+✔ Is this present in HTML?
+<script src="assets/js/ai-assistant.js"></script>
+
+✔ Open browser console:
+Type:
+typeof toggleChatbot
+
+If result = "undefined"
+👉 JS is NOT loaded → FIX THIS FIRST
+
+-------------------------------------
+
+2. VERIFY BUTTON SELECTOR
+
+Find actual button in HTML:
+
+Example:
+<button class="ai-widget-btn">
+
+Check:
+
+✔ Does this class EXACTLY match JS selector?
+
+Fix:
+Use:
+
+document.querySelectorAll('.ai-widget-btn')
+
+If class mismatch → FIX selector
+
+-------------------------------------
+
+3. FORCE CLICK DEBUG
+
+Add temporary debug:
+
+document.querySelectorAll('.ai-widget-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    console.log("CLICK WORKING");
+  });
+});
+
+✔ Click button → must log in console
+
+If NOT:
+👉 button binding broken
+
+-------------------------------------
+
+4. CHECK CHATBOX ELEMENT
+
+Verify this exists:
+
+<div class="ai-widget-box">
+
+If missing → chatbot cannot open
+
+-------------------------------------
+
+5. FIX TOGGLE FUNCTION
+
+Ensure function exists:
+
+function toggleChatbot() {
+  document.querySelector('.ai-widget-box').classList.toggle('active');
+}
+
+✔ No errors inside function
+
+-------------------------------------
+
+6. DOM LOAD ISSUE FIX
+
+Wrap everything:
+
+document.addEventListener("DOMContentLoaded", function() {
+  // all chatbot code here
+});
+
+-------------------------------------
+
+7. FINAL TEST
+
+✔ Click button → popup MUST open  
+✔ No console errors  
+✔ Works on ALL pages  
+
+-------------------------------------
+
+IMPORTANT RULE:
+
+You MUST:
+- Identify EXACT root cause
+- Show what was broken
+- Then fix
+
+DO NOT say DONE without proof
+
+-------------------------------------
+
+After fixing → reply:
+
+✔ Root cause found:
+✔ Fix applied:
+✔ Now working:

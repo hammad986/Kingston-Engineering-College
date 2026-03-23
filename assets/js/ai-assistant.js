@@ -64,10 +64,10 @@ class AIAssistant {
     /* ── Global Button Binding (for all pages) ──────────────────── */
     bindGlobalButtons() {
         try {
-            // Bind circle button (WhatsApp-like button) and any other AI toggle buttons
-            const circleBtn = document.querySelector('.circle-btn.bg-brand-blue');
-            if (circleBtn) {
-                circleBtn.addEventListener('click', (e) => {
+            // Bind AI toggle buttons (primary selector is ai-widget-toggle class)
+            const toggleBtns = document.querySelectorAll('.ai-widget-toggle');
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     const widget = document.getElementById('ai-widget-container');
@@ -75,7 +75,7 @@ class AIAssistant {
                         widget.classList.toggle('active');
                     }
                 });
-            }
+            });
         } catch (e) {
             console.warn('[KingstonAI] Button binding error:', e);
         }
