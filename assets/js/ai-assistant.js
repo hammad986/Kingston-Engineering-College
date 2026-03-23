@@ -56,6 +56,11 @@ class AIAssistant {
             this.bindGlobalButtons(); // Bind chatbot buttons on all pages
             this.restoreOrWelcome();
             this.autoFocusInput();
+            
+            // Debug: verify initial state
+            const container = document.getElementById('ai-widget-container');
+            console.log('[KingstonAI] Initial container classes:', container?.className || 'none');
+            console.log('[KingstonAI] Has active class:', container?.classList.contains('active'));
         } catch (e) {
             console.error('[KingstonAI] Init error:', e);
         }

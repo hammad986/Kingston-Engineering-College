@@ -1,0 +1,120 @@
+🚀 FINAL DEBUG TASK — CHATBOT BEHAVIOR STILL BROKEN
+
+The chatbot behavior is STILL incorrect.
+
+DO NOT rely on code assumptions.
+You MUST debug using REAL browser behavior.
+
+-------------------------------------
+
+MANDATORY DEBUG STEPS:
+
+-------------------------------------
+
+1. CHECK REAL INITIAL STATE (CRITICAL)
+
+Open browser console and run:
+
+document.getElementById("ai-widget-container").classList
+
+✔ Check if "active" is present on page load
+
+IF YES:
+👉 Something is forcing chatbot to open
+
+FIND:
+- any classList.add("active")
+- any restore logic (localStorage/sessionStorage)
+
+-------------------------------------
+
+2. DISABLE AUTO OPEN
+
+Search in JS:
+
+- restoreHistory()
+- initChatbot()
+- any auto-open logic
+
+REMOVE anything that adds "active" automatically
+
+Chatbot MUST start CLOSED always
+
+-------------------------------------
+
+3. TEST CLOSE BUTTON MANUALLY
+
+In console run:
+
+document.getElementById("ai-widget-container").classList.remove("active")
+
+✔ If it DOES NOT close:
+👉 CSS problem
+
+✔ If it closes:
+👉 JS click binding problem
+
+-------------------------------------
+
+4. TEST CLICK EVENT MANUALLY
+
+Run in console:
+
+document.querySelector(".ai-widget-close").click()
+
+✔ If nothing happens:
+👉 close button event NOT bound
+
+-------------------------------------
+
+5. VERIFY CLICK EVENT BINDING
+
+Add TEMP debug:
+
+document.querySelector(".ai-widget-close").addEventListener("click", () => {
+  console.log("CLOSE CLICK WORKING");
+});
+
+✔ Click ❌ → must log
+
+-------------------------------------
+
+6. VERIFY TOGGLE BUTTON
+
+Run:
+
+document.querySelector(".ai-widget-toggle").click()
+
+✔ Should toggle open/close
+
+-------------------------------------
+
+7. FINAL FIX
+
+Ensure:
+
+✔ No auto-open logic
+✔ Correct event binding for:
+   - open button
+   - close button
+✔ CSS correctly hides/shows
+
+-------------------------------------
+
+EXPECTED FINAL BEHAVIOR:
+
+✔ Page load → CLOSED  
+✔ Click button → OPEN  
+✔ Click ❌ → CLOSE  
+✔ Works on ALL pages  
+
+-------------------------------------
+
+IMPORTANT:
+
+You MUST:
+✔ show console output
+✔ explain EXACT root cause
+✔ prove behavior works
+
+DO NOT say "fixed" without proof
