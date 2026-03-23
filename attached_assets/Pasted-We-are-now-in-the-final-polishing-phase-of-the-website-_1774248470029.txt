@@ -1,0 +1,129 @@
+We are now in the final polishing phase of the website.
+
+-------------------------------------
+
+TASK:
+
+Perform a deep analysis of the entire project.
+
+-------------------------------------
+
+FOCUS AREAS:
+
+1. HEADER & FOOTER CONSISTENCY:
+
+- Treat index.html header and footer as the standard
+- Check ALL pages:
+  - header must match exactly
+  - footer must match exactly
+
+- Identify:
+  - mismatched structure
+  - broken navigation links
+  - missing elements
+
+-------------------------------------
+
+2. USER-REPORTED BUG VALIDATION (VERY IMPORTANT):
+
+Carefully verify the following issues reported by the user:
+
+A. AI Chatbot Popup Issues:
+- Popup UI is not properly designed
+- Message content inside popup is incorrect or poorly formatted
+
+B. Mobile Menu Issue:
+- Hamburger (3-line menu) opens but does NOT scroll
+- Menu gets stuck (not usable on mobile)
+
+C. Academic Menu Bug:
+- "Academic" menu has a dropdown arrow (V symbol)
+- But NO submenu exists
+→ If true, remove the dropdown indicator
+
+D. Mobile Header Size Issue:
+- Header takes too much vertical space
+- Content is pushed down too much
+
+→ Suggest:
+- Reduce header height ONLY for mobile/tablet
+- Keep desktop/laptop unchanged
+
+E. Academic Page Header Bug:
+- Check header rendering issue specifically on academic page
+
+IMPORTANT:
+- First VERIFY if each issue is valid
+- Do NOT assume — confirm properly
+
+-------------------------------------
+
+3. GLOBAL BUG CHECK:
+
+Find:
+
+- broken links
+- wrong paths
+- missing images
+- JS errors (console issues)
+- case sensitivity issues
+- incorrect redirects
+
+-------------------------------------
+
+4. UI CONSISTENCY CHECK:
+
+- spacing issues
+- font mismatch
+- button styles inconsistency
+- color mismatch
+- alignment problems
+
+-------------------------------------
+
+5. FUNCTIONALITY CHECK:
+
+Verify:
+
+- forms (EmailJS)
+- search system
+- AI assistant (full page + popup)
+- news system
+- events system
+- placement pages
+
+-------------------------------------
+
+6. UNUSED / REDUNDANT FILES:
+
+- unused files
+- duplicate pages
+- unnecessary scripts
+
+-------------------------------------
+
+OUTPUT FORMAT:
+
+- Group issues into:
+  CRITICAL
+  MEDIUM
+  MINOR
+
+- Clearly mention:
+  - which user-reported bugs are VALID
+  - which are NOT valid
+
+-------------------------------------
+
+RULES:
+
+- Do NOT fix anything yet
+- Do NOT modify files
+- Only provide a full audit report
+
+-------------------------------------
+
+After analysis:
+Provide complete findings.
+
+Then STOP.
