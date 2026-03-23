@@ -1,0 +1,112 @@
+🚀 STEP — CHATBOT STILL NOT OPENING (FULL DEBUG REQUIRED)
+
+The chatbot STILL does NOT open.
+
+Previous fixes are incorrect. You MUST debug FULL FLOW end-to-end.
+
+-------------------------------------
+
+1. VERIFY CLICK EVENT (PROOF REQUIRED)
+
+Add:
+
+document.querySelectorAll('.ai-widget-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    console.log("BUTTON CLICKED");
+  });
+});
+
+✔ Click button → MUST log in console
+
+If NOT:
+👉 event binding still broken
+
+-------------------------------------
+
+2. VERIFY CHATBOX ELEMENT EXISTS
+
+Check in HTML:
+
+<div class="ai-widget-box">
+
+✔ If NOT present → CREATE it  
+✔ If class name different → FIX JS selector
+
+-------------------------------------
+
+3. FORCE TOGGLE TEST
+
+Manually run in console:
+
+document.querySelector('.ai-widget-box').classList.add('active');
+
+✔ If popup appears → JS issue  
+✔ If NOT → CSS issue
+
+-------------------------------------
+
+4. FIX CSS (CRITICAL)
+
+Ensure:
+
+.ai-widget-box {
+  display: none;
+}
+
+.ai-widget-box.active {
+  display: block;
+}
+
+✔ Also check:
+z-index: 9999;
+
+-------------------------------------
+
+5. FIX TOGGLE FUNCTION
+
+Use EXACT code:
+
+function toggleChatbot() {
+  const box = document.querySelector('.ai-widget-box');
+  if (!box) {
+    console.error("Chatbox not found");
+    return;
+  }
+  box.classList.toggle('active');
+}
+
+-------------------------------------
+
+6. CONNECT BUTTON TO FUNCTION
+
+document.querySelectorAll('.ai-widget-toggle').forEach(btn => {
+  btn.addEventListener('click', toggleChatbot);
+});
+
+-------------------------------------
+
+7. FINAL TEST (MANDATORY)
+
+✔ Click button → popup MUST open  
+✔ No console errors  
+✔ Works on ALL pages  
+
+-------------------------------------
+
+IMPORTANT:
+
+You MUST:
+✔ Show console log proof  
+✔ Show element exists  
+✔ Show toggle works  
+
+DO NOT say DONE without proof
+
+-------------------------------------
+
+Final reply format:
+
+✔ Root cause:
+✔ Fix applied:
+✔ Proof:
+✔ Working:

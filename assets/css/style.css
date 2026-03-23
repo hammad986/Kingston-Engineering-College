@@ -1507,3 +1507,38 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ==========================================================================
+   AI WIDGET STYLES
+   ========================================================================== */
+.ai-widget-hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ai-widget-container.active {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.ai-widget-box {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+    width: 100%;
+    max-width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    position: relative;
+}
+
+#ai-widget-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 9998;
+}
+

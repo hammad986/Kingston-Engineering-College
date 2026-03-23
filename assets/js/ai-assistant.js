@@ -66,13 +66,18 @@ class AIAssistant {
         try {
             // Bind AI toggle buttons (primary selector is ai-widget-toggle class)
             const toggleBtns = document.querySelectorAll('.ai-widget-toggle');
+            console.log('[KingstonAI] Found', toggleBtns.length, 'toggle buttons');
             toggleBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log('[KingstonAI] Button clicked!');
                     const widget = document.getElementById('ai-widget-container');
                     if (widget) {
                         widget.classList.toggle('active');
+                        console.log('[KingstonAI] Widget toggled. Active:', widget.classList.contains('active'));
+                    } else {
+                        console.error('[KingstonAI] Widget container not found!');
                     }
                 });
             });
