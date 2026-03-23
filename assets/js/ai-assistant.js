@@ -47,27 +47,37 @@ class AIAssistant {
 
     /* ── Bootstrap ───────────────────────────────────────────── */
     async init() {
-        await Promise.all([
-            this.loadKnowledgeBase(),
-            this.loadSearchIndex()
-        ]);
-        this.attachEventListeners();
-        this.bindGlobalButtons(); // Bind chatbot buttons on all pages
-        this.restoreOrWelcome();
-        this.autoFocusInput();
+        try {
+            await Promise.all([
+                this.loadKnowledgeBase(),
+                this.loadSearchIndex()
+            ]);
+            this.attachEventListeners();
+            this.bindGlobalButtons(); // Bind chatbot buttons on all pages
+            this.restoreOrWelcome();
+            this.autoFocusInput();
+        } catch (e) {
+            console.error('[KingstonAI] Init error:', e);
+        }
     }
 
     /* ── Global Button Binding (for all pages) ──────────────────── */
     bindGlobalButtons() {
-        // Bind circle button (WhatsApp-like button) and any other AI toggle buttons
-        const circleBtn = document.querySelector('.circle-btn.bg-brand-blue');
-        if (circleBtn) {
-            circleBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const widget = document.getElementById('ai-widget-container');
-                if (widget) widget.classList.toggle('active');
-            });
+        try {
+            // Bind circle button (WhatsApp-like button) and any other AI toggle buttons
+            const circleBtn = document.querySelector('.circle-btn.bg-brand-blue');
+            if (circleBtn) {
+                circleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const widget = document.getElementById('ai-widget-container');
+                    if (widget) {
+                        widget.classList.toggle('active');
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn('[KingstonAI] Button binding error:', e);
         }
     }
 
@@ -308,50 +318,61 @@ class AIAssistant {
     }
 
     scoreIntent(intent, message) {
-        let total = 0;
-        const keywords = intent.keywords || [];
-        const intentId = intent.id || 'unknown';
+        try {
+            let total = 0;
+            if (!intent || typeof intent !== 'object') return 0;
+            
+            const keywords = Array.isArray(intent.keywords) ? intent.keywords : [];
+            if (keywords.length === 0) return 0;
 
-        for (const kw of keywords) {
-            const k = kw.toLowerCase();
-            const msgWords = message.split(/\s+/);
-            const kwWords = k.split(/\s+/);
+            for (const kw of keywords) {
+                if (typeof kw !== 'string') continue;
+                
+                const k = kw.toLowerCase();
+                const msgWords = message.split(/\s+/).filter(Boolean);
+                const kwWords = k.split(/\s+/).filter(Boolean);
 
-            // Exact full match
-            if (message === k) {
-                total += 100;
-                continue;
-            }
+                if (!k || !message) continue;
 
-            // Full keyword appears as substring
-            if (message.includes(k)) {
-                total += 60 + (k.length * 2);
-                continue;
-            }
+                // Exact full match
+                if (message === k) {
+                    total += 100;
+                    continue;
+                }
 
-            // All words in keyword appear in message
-            if (kwWords.every(w => message.includes(w))) {
-                total += 50;
-                continue;
-            }
+                // Full keyword appears as substring
+                if (message.includes(k)) {
+                    total += 60 + (k.length * 2);
+                    continue;
+                }
 
-            // Individual keyword word matches
-            for (const kwWord of kwWords) {
-                if (msgWords.includes(kwWord)) {
-                    total += 30;
+                // All words in keyword appear in message
+                if (kwWords.length > 0 && kwWords.every(w => message.includes(w))) {
+                    total += 50;
+                    continue;
+                }
+
+                // Individual keyword word matches
+                for (const kwWord of kwWords) {
+                    if (kwWord && msgWords.includes(kwWord)) {
+                        total += 30;
+                    }
+                }
+
+                // Partial match (80% of keyword)
+                if (k.length >= 4) {
+                    const partial = k.slice(0, Math.ceil(k.length * 0.8));
+                    if (message.includes(partial)) {
+                        total += 15;
+                    }
                 }
             }
 
-            // Partial match (80% of keyword)
-            if (k.length >= 4) {
-                const partial = k.slice(0, Math.ceil(k.length * 0.8));
-                if (message.includes(partial)) {
-                    total += 15;
-                }
-            }
+            return Math.max(0, total);
+        } catch (e) {
+            console.warn('[KingstonAI] scoreIntent error:', e);
+            return 0;
         }
-
-        return total;
     }
 
     /* ── Context memory ──────────────────────────────────────── */
