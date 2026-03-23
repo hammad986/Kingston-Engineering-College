@@ -1,0 +1,95 @@
+Proceed to fix UI issues and upgrade chatbot system.
+
+-------------------------------------
+
+1. HEADER CONSISTENCY FIX:
+
+- Ensure ALL pages (including academics page) use EXACT same header structure as index.html
+- Fix any overlap or layering issues
+
+-------------------------------------
+
+2. CHATBOT POPUP POSITION FIX (CRITICAL):
+
+- Fix chatbot popup z-index issue
+- Ensure:
+  - Close (❌) button is ALWAYS visible
+  - Popup is NOT hidden under navbar
+  - Proper layering above all elements
+
+-------------------------------------
+
+3. ACADEMIC MENU FIX:
+
+- If "Academics" menu has NO submenu:
+  - REMOVE dropdown arrow (▼)
+  - Remove unnecessary dropdown behavior
+
+-------------------------------------
+
+4. MOBILE MENU FIX:
+
+- Fix hamburger menu scroll issue:
+  - Add max-height
+  - Add overflow-y: auto
+- Ensure full menu is scrollable on mobile
+
+-------------------------------------
+
+5. MOBILE HEADER OPTIMIZATION:
+
+- Reduce header height ONLY for mobile/tablet
+- Keep desktop unchanged
+- Optimize spacing, padding, and logo size
+
+-------------------------------------
+
+6. CHATBOT UI UPGRADE (IMPORTANT):
+
+Upgrade chatbot popup UI to modern style similar to reference:
+
+Reference style:
+https://saveetha.ac.in/
+
+Requirements:
+
+- Clean chat bubbles (left/right)
+- Proper spacing and padding
+- Modern UI design (rounded, shadows)
+- Better typography
+
+- Add suggestion chips/buttons:
+  (e.g. Admissions, Fees, Placements, Courses, Hostel)
+
+- Improve input box design
+- Improve header section of chatbot
+
+- Ensure full scrollable chat area
+- Smooth animations for messages
+
+-------------------------------------
+
+7. CHATBOT BEHAVIOR IMPROVEMENT:
+
+- Make chatbot feel like real assistant:
+  - Handle unknown questions gracefully
+  - Handle mixed language (English + Hinglish)
+  - Avoid dead-end replies
+
+-------------------------------------
+
+RULES:
+
+- Do NOT create separate chatbot page
+- Keep chatbot as popup (floating widget)
+- Do NOT break existing functionality
+- Maintain design consistency
+
+-------------------------------------
+
+After completing:
+
+- Show all fixes
+- Show before/after summary
+
+Then STOP.

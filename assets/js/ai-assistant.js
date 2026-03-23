@@ -251,6 +251,22 @@ class AIAssistant {
     normalize(text) {
         return text
             .toLowerCase()
+            // Hinglish / mixed-language common patterns → English equivalents
+            .replace(/\bkya hai\b/g, 'what is')
+            .replace(/\bkaise\b/g, 'how')
+            .replace(/\bkahan\b/g, 'where')
+            .replace(/\bkitna\b/g, 'how much')
+            .replace(/\bpadhna\b|\bpadvna\b/g, 'study')
+            .replace(/\bpadhai\b/g, 'education')
+            .replace(/\bbatao\b|\bbataiye\b/g, 'tell me')
+            .replace(/\bchahiye\b|\bchahie\b/g, 'need')
+            .replace(/\bkaro\b|\bkarna\b/g, 'do')
+            .replace(/\bhaan\b|\bha\b/g, 'yes')
+            .replace(/\bnahi\b|\bnahin\b/g, 'no')
+            .replace(/\btheek hai\b|\bthik hai\b/g, 'ok')
+            .replace(/\baplly\b/g, 'apply')   // common typo
+            .replace(/\bplacment\b/g, 'placement') // typo
+            .replace(/\bfaculity\b/g, 'faculty')   // typo
             .replace(/[?!,।]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
@@ -312,7 +328,14 @@ class AIAssistant {
         const fallback = this.knowledgeBase?.fallback;
         const results = this.searchPages(query, 4);
 
-        let html = `<p style="margin:0 0 10px 0;">${fallback?.message || 'Here are some pages that might help:'}</p>`;
+        const fallbackMessages = [
+            "Hmm, I couldn't find an exact match — but here are some relevant pages:",
+            "Good question! I'm still learning, but these pages might have what you need:",
+            "Let me help you find the right information:",
+            "I may not have a direct answer, but here's what might help:"
+        ];
+        const msg = fallbackMessages[Math.floor(Math.random() * fallbackMessages.length)];
+        let html = `<p style="margin:0 0 10px 0;">${msg}</p>`;
 
         if (results.length > 0) {
             html += `<div class="ai-result-cards">`;

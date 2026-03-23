@@ -52,6 +52,15 @@
 }
 
 @media (max-width: 768px) {
+    /* Mobile Header Optimization */
+    .top-bar { display: none !important; }
+    .logo-bar { padding: 6px 0 !important; }
+    .main-logo { height: 48px !important; width: auto !important; }
+    .logo-text h1 { font-size: 1.1rem !important; }
+    .logo-text h2 { font-size: 0.65rem !important; }
+    .logo-area { gap: 8px !important; }
+    .notice-bar { font-size: 0.7rem !important; padding: 4px 0 !important; }
+
     /* Mobile Menu Toggle */
     .mobile-menu-toggle { 
         display: block; 
@@ -70,7 +79,13 @@
         position: absolute;
         top: 100%; left: 0; z-index: 1000;
     }
-    .nav-links.active { display: flex; }
+    .nav-links.active {
+        display: flex;
+        max-height: calc(100vh - 150px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
     .nav-links > li {
         width: 100%;
         border-bottom: 1px solid var(--border-color);
