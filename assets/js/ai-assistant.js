@@ -52,8 +52,23 @@ class AIAssistant {
             this.loadSearchIndex()
         ]);
         this.attachEventListeners();
+        this.bindGlobalButtons(); // Bind chatbot buttons on all pages
         this.restoreOrWelcome();
         this.autoFocusInput();
+    }
+
+    /* ── Global Button Binding (for all pages) ──────────────────── */
+    bindGlobalButtons() {
+        // Bind circle button (WhatsApp-like button) and any other AI toggle buttons
+        const circleBtn = document.querySelector('.circle-btn.bg-brand-blue');
+        if (circleBtn) {
+            circleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const widget = document.getElementById('ai-widget-container');
+                if (widget) widget.classList.toggle('active');
+            });
+        }
     }
 
     async loadKnowledgeBase() {
@@ -281,7 +296,11 @@ class AIAssistant {
             score: this.scoreIntent(intent, message)
         })).filter(r => r.score > 0);
 
-        if (!scores.length) return null;
+        if (!scores.length) {
+            // Fallback: return generic "not_found" intent if available
+            return this.getIntentById('not_found') || null;
+        }
+        
         scores.sort((a, b) => b.score - a.score);
         return scores[0].intent;
     }
