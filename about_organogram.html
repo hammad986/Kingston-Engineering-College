@@ -58,6 +58,8 @@
                     <a href="alumni.html">Alumni</a>
                     <a href="#">Grievance & Help Desk</a>
                     <a href="admission.html">Admission</a>
+                    <a href="#" title="Coming Soon">Student-Log In</a>
+                    <a href="#" title="Coming Soon">Staff-Log In</a>
                 </div>
                 <div class="top-bar-right">
                     <a href="pay_online.html" class="btn-pay-online">Pay Online</a>
@@ -69,21 +71,12 @@
         <div class="logo-bar">
             <div class="container logo-bar-inner">
                 <div class="logo-area">
-                    <img src="assets/images/icons/001-web_logo_banner_2026.png" width="450" height="150" alt="Logo"
-                        class="main-logo" onerror="this.src='assets/images/icons/001-web_logo_banner_2026.png'">
-                    <div class="logo-text">
-                        <!-- <h1>KINGSTON ENGINEERING COLLEGE</h1> -->
-                        <!-- <h2>(AN AUTONOMOUS INSTITUTION)</h2> -->
-                        <!-- <p class="logo-address">(Approved by AICTE & Council of Architecture, New Delhi, Affiliated to
-                            Anna University, Chennai,<br>
-                            Accredited With 'A' Grade by NAAC, Recognized Institution under section 2(f) & 12(B) of UGC
-                            act, 1956)<br>
-                            Chittoor Main Road, Vellore, Tamil Nadu - 632059.</p> -->
-                    </div>
+                    <img src="assets/images/icons/001-web_logo_banner_2026.png" width="450" height="150"
+                        alt="Logo" class="main-logo" onerror="this.src='assets/images/icons/001-web_logo_banner_2026.png'">
                 </div>
-                <div class="accreditations-area hidden-mobile">
+                <div class="accreditations-area">
                     <div class="accred-logos">
-                        <!-- Placeholders mimicking the small logos from the screenshot -->
+                        <!-- Desktop View / Mobile Marquee duplicated -->
                         <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC">
                         <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
                             alt="AICTE">
@@ -91,7 +84,18 @@
                         <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University">
                         <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC">
                         <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC">
-                        <img src="assets/images/icons/008-blue-horizontal.png" alt="blue-horizontal">
+                        <img src="assets/images/icons/008-blue-horizontal.png" width="100" height="150"
+                            alt="blue-horizontal">
+                        <!-- Duplicates for seamless marquee (Mobile Only) -->
+                        <img src="assets/images/icons/002-UGC_India_Logo.png" alt="UGC" class="mobile-only-logo">
+                        <img src="assets/images/icons/003-All_India_Council_for_Technical_Education_logo.png"
+                            alt="AICTE" class="mobile-only-logo">
+                        <img src="assets/images/icons/004-coa.png" alt="coa" class="mobile-only-logo">
+                        <img src="assets/images/icons/005-Anna_University_Logo.svg.png" alt="Anna University"
+                            class="mobile-only-logo">
+                        <img src="assets/images/icons/006-naaclogo-a.png" alt="NAAC" class="mobile-only-logo">
+                        <img src="assets/images/icons/007-IIC_logo-e1671727022354.png" alt="IIC"
+                            class="mobile-only-logo">
                     </div>
                 </div>
             </div>
@@ -114,9 +118,9 @@
             <div class="container">
                 <button class="mobile-menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i> Menu</button>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li class="has-dropdown">
-                        <a href="about.html" class="active">About Us</a>
+                        <a href="about.html">About Us</a>
                         <ul class="dropdown js-exclude-dropdown">
                             <li><a href="about_chairman.html">Chairman</a></li>
                             <li><a href="about_principal.html">Principal</a></li>
@@ -155,6 +159,7 @@
                             <li><a href="facilities_welfare.html">Welfare Measures</a></li>
                         </ul>
                     </li>
+                    <li><a href="policies.html">Policies</a></li>
                     <li class="has-dropdown">
                         <a href="#">Placements</a>
                         <ul class="dropdown js-exclude-dropdown">
@@ -176,154 +181,145 @@
                             <li><a href="iqac_quality_initiatives.html">IQAC Quality Initiatives</a></li>
                             <li><a href="iqac_annual_reports.html">Annual Reports</a></li>
                             <li><a href="iqac_academic_audit.html">Academic Audit</a></li>
-                            >
-                            <li class="has-dropdown">
-                                <a href="#">NAAC</a>
-                                <ul class="dropdown js-exclude-dropdown">
-                                    <li><a href="naac_iiqa.html">IIQA</a></li>
-                                    <li><a href="naac_ssr.html">SSR</a></li>
-                                    <li><a href="naac_dvv.html">DVV Clarification</a></li>
-                                    <li><a href="naac_rti.html">RTI</a></li>
-                                    <li><a href="naac_extended_profile.html">Extended Profile</a></li>
-                                    <li><a href="naac_curricular_aspects.html">Curricular Aspects</a></li>
-                                    <li><a href="naac_teaching_learning.html">Teaching Learning and Evaluation</a></li>
-                                    <li><a href="naac_research_innovation.html">Research Innovation and Extension</a>
-                                    </li>
-                                    <li><a href="naac_infrastructure.html">Infrastructure and Learning Resource</a></li>
-                                    <li><a href="naac_student_support.html">Student Support Progression</a></li>
-                                    <li><a href="naac_governance.html">Governance, Leadership and Management</a></li>
-                                    <li><a href="naac_institutional_values.html">Institution Values and Best
-                                            Practices</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-dropdown">
-                                <a href="ugc_mandatory_committee.html">UGC Mandatory Committee <i
-                                        class="fas fa-caret-down"></i></a>
-                                <ul class="dropdown js-exclude-dropdown">
-                                    <li><a href="ugc_mc_icc.html">Internal Complaint Committee</a></li>
-                                    <li><a href="ugc_mc_sgrc.html">Student Grievance Redressal</a></li>
-                                    <li><a href="ugc_mc_posh.html">POSH Cell</a></li>
-                                    <li><a href="ugc_mc_sedg.html">SEDG</a></li>
-                                    <li><a href="ugc_mc_arc.html">Anti Ragging Committee</a></li>
-                                    <li><a href="ugc_mc_eqc.html">Equal Opportunity Cell</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-dropdown">
-                                <a href="ugc_undertaking.html">UGC Undertaking Letter By HOI <i
-                                        class="fas fa-caret-down"></i></a>
-                                <ul class="dropdown js-exclude-dropdown">
-                                    <li><a href="ugc_ul_1.html">Undertaking Letter I</a></li>
-                                    <li><a href="ugc_ul_2.html">Undertaking Letter II</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-dropdown">
-                                <a href="public_self_disclosure.html">Public Self Disclosure <i
-                                        class="fas fa-caret-down"></i></a>
-                                <ul class="dropdown js-exclude-dropdown">
-                                    <li class="has-dropdown">
-                                        <a href="#">About HEI <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_aboutus.html">About Us</a></li>
-                                            <li><a href="ugc_ps_act_statutes.html">Act and Statutes</a></li>
-                                            <li><a href="ugc_ps_idp.html">Institutional Development Plan</a></li>
-                                            <li><a href="ugc_ps_affiliating.html">Affiliating University</a></li>
-                                            <li><a href="ugc_ps_accreditation.html">Accreditation / Ranking Status</a>
-                                            </li>
-                                            <li><a href="ugc_ps_recognition.html">Recognition / Approvals</a></li>
-                                            <li><a href="ugc_ps_annual_reports.html">Annual Reports</a></li>
-                                            <li><a href="ugc_ps_annual_accounts.html">Annual Accounts & Audit
-                                                    Reports</a></li>
-                                            <li><a href="ugc_ps_sponsoring_body.html">Sponsoring Body Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Administrations <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_finance.html">Finance Officer</a></li>
-                                            <li><a href="ugc_ps_coe.html">Controller of Examination</a></li>
-                                            <li><a href="ugc_ps_cvo.html">Chief Vigilance Officer</a></li>
-                                            <li><a href="ugc_ps_ombudsperson.html">Ombudsperson</a></li>
-                                            <li><a href="ugc_ps_bos.html">Executive Council</a></li>
-                                            <li><a href="ugc_ps_academic_leadership.html">Academic Leadership (HoDs)</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Academic <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_academic_programs.html">Academic Programs</a></li>
-                                            <li><a href="ugc_ps_academic_calendar.html">Academic Calendars</a></li>
-                                            <li><a href="ugc_ps_examinations.html">Examinations</a></li>
-                                            <li><a href="departments.html">Department</a></li>
-                                            <li><a href="ugc_ps_staff.html">Department Wise Faculty Details</a></li>
-                                            <li><a href="iqac_about.html">Internal Quality Assurance Cell</a></li>
-                                            <li><a href="facilities_library.html">Library</a></li>
-                                            <li><a href="ugc_ps_mou.html">Academic Collaborations</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Admissions <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_prospectus.html">Prospectus</a></li>
-                                            <li><a href="ugc_ps_feerefund.html">Fee Refund Policy</a></li>
-                                            <li><a href="ugc_ps_admission_policy.html">Admission Process and
-                                                    Guidelines</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Research's <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_rnd.html">Research and Development Cell</a></li>
-                                            <li><a href="ugc_ps_incubation.html">Incubation Centre / Start-Ups / IIC</a>
-                                            </li>
-                                            <li><a href="#">Central Facilities</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Student Life <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_sports.html">Sports Facilities</a></li>
-                                            <li><a href="ugc_ps_nss.html">NSS</a></li>
-                                            <li><a href="ugc_ps_hostel.html">Hostel Details</a></li>
-                                            <li><a href="placement_pat.html">Placement Cell & Activities</a></li>
-                                            <li><a href="ugc_ps_sl_sgrc.html">SGRC and Ombudsperson</a></li>
-                                            <li><a href="ugc_ps_health.html">Health Facilities</a></li>
-                                            <li><a href="ugc_ps_sl_icc.html">Internal Complaints Committee</a></li>
-                                            <li><a href="ugc_ps_sl_antiragging.html">Anti Ragging Cell</a></li>
-                                            <li><a href="ugc_ps_sl_equalopportunity.html">Equal Opportunity Cell</a>
-                                            </li>
-                                            <li><a href="ugc_ps_sl_sedg.html">SEDG</a></li>
-                                            <li><a href="ugc_ps_differentlyabled.html">Facilities for Differently
-                                                    Abled</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="ugc_ps_alumni.html">Alumni Association</a></li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Information Corner <i class="fas fa-angle-right"
-                                                style="float:right; margin-top:4px;"></i></a>
-                                        <ul class="dropdown js-exclude-dropdown">
-                                            <li><a href="ugc_ps_rti.html">RTI</a></li>
-                                            <li><a href="ugc_ps_circulars.html">Circulars and Notices</a></li>
-                                            <li><a href="ugc_ps_announcements.html">Announcements</a></li>
-                                            <li><a href="ugc_ps_newsletters.html">Newsletters</a></li>
-                                            <li><a href="ugc_ps_events.html">News, Recent Events & Achievements</a></li>
-                                            <li><a href="#">Job Openings</a></li>
-                                            <li><a href="ugc_ps_studyinindia.html">Admission for International
-                                                    Students</a></li>
-                                            <li><a href="#">Details and Location Map</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Picture Gallery Menu replacement -->
-                            <!-- Contact Us Menu replacement -->
+                            <li><a href="iqac_feedback.html">Feedback</a></li>
+                            <li><a href="iqac_strategic_plan.html">Strategic Plan 2024</a></li>
                         </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="#">NAAC</a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="naac_iiqa.html">IIQA</a></li>
+                            <li><a href="naac_ssr.html">SSR</a></li>
+                            <li><a href="naac_dvv.html">DVV Clarification</a></li>
+                            <li><a href="naac_rti.html">RTI</a></li>
+                            <li><a href="naac_extended_profile.html">Extended Profile</a></li>
+                            <li><a href="naac_curricular_aspects.html">Curricular Aspects</a></li>
+                            <li><a href="naac_teaching_learning.html">Teaching Learning and Evaluation</a></li>
+                            <li><a href="naac_research_innovation.html">Research Innovation and Extension</a></li>
+                            <li><a href="naac_infrastructure.html">Infrastructure and Learning Resource</a></li>
+                            <li><a href="naac_student_support.html">Student Support Progression</a></li>
+                            <li><a href="naac_governance.html">Governance, Leadership and Management</a></li>
+                            <li><a href="naac_institutional_values.html">Institution Values and Best Practices</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="ugc_mandatory_committee.html">UGC Mandatory Committee <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="ugc_mc_icc.html">Internal Complaint Committee</a></li>
+                            <li><a href="ugc_mc_sgrc.html">Student Grievance Redressal</a></li>
+                            <li><a href="ugc_mc_posh.html">POSH Cell</a></li>
+                            <li><a href="ugc_mc_sedg.html">SEDG</a></li>
+                            <li><a href="ugc_mc_arc.html">Anti Ragging Committee</a></li>
+                            <li><a href="ugc_mc_eqc.html">Equal Opportunity Cell</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="ugc_undertaking.html">UGC Undertaking Letter By HOI <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li><a href="ugc_ul_1.html">Undertaking Letter I</a></li>
+                            <li><a href="ugc_ul_2.html">Undertaking Letter II</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="public_self_disclosure.html">Public Self Disclosure <i
+                                class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown js-exclude-dropdown">
+                            <li class="has-dropdown">
+                                <a href="#">About HEI <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_aboutus.html">About Us</a></li>
+                                    <li><a href="ugc_ps_act_statutes.html">Act and Statutes</a></li>
+                                    <li><a href="ugc_ps_idp.html">Institutional Development Plan</a></li>
+                                    <li><a href="ugc_ps_affiliating.html">Affiliating University</a></li>
+                                    <li><a href="ugc_ps_accreditation.html">Accreditation / Ranking Status</a></li>
+                                    <li><a href="ugc_ps_recognition.html">Recognition / Approvals</a></li>
+                                    <li><a href="ugc_ps_annual_reports.html">Annual Reports</a></li>
+                                    <li><a href="ugc_ps_annual_accounts.html">Annual Accounts & Audit Reports</a></li>
+                                    <li><a href="ugc_ps_sponsoring_body.html">Sponsoring Body Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Administrations <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_finance.html">Finance Officer</a></li>
+                                    <li><a href="ugc_ps_coe.html">Controller of Examination</a></li>
+                                    <li><a href="ugc_ps_cvo.html">Chief Vigilance Officer</a></li>
+                                    <li><a href="ugc_ps_ombudsperson.html">Ombudsperson</a></li>
+                                    <li><a href="ugc_ps_bos.html">Executive Council</a></li>
+                                    <li><a href="ugc_ps_academic_leadership.html">Academic Leadership (HoDs)</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Academic <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_academic_programs.html">Academic Programs</a></li>
+                                    <li><a href="ugc_ps_academic_calendar.html">Academic Calendars</a></li>
+                                    <li><a href="ugc_ps_examinations.html">Examinations</a></li>
+                                    <li><a href="departments.html">Department</a></li>
+                                    <li><a href="ugc_ps_staff.html">Department Wise Faculty Details</a></li>
+                                    <li><a href="iqac_about.html">Internal Quality Assurance Cell</a></li>
+                                    <li><a href="facilities_library.html">Library</a></li>
+                                    <li><a href="ugc_ps_mou.html">Academic Collaborations</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Admissions <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_prospectus.html">Prospectus</a></li>
+                                    <li><a href="ugc_ps_feerefund.html">Fee Refund Policy</a></li>
+                                    <li><a href="ugc_ps_admission_policy.html">Admission Process and Guidelines</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Research's <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_rnd.html">Research and Development Cell</a></li>
+                                    <li><a href="ugc_ps_incubation.html">Incubation Centre / Start-Ups / IIC</a></li>
+                                    <li><a href="#">Central Facilities</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-dropdown">
+                                <a href="#">Student Life <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_sports.html">Sports Facilities</a></li>
+                                    <li><a href="ugc_ps_nss.html">NSS</a></li>
+                                    <li><a href="ugc_ps_hostel.html">Hostel Details</a></li>
+                                    <li><a href="placement_pat.html">Placement Cell & Activities</a></li>
+                                    <li><a href="ugc_ps_sl_sgrc.html">SGRC and Ombudsperson</a></li>
+                                    <li><a href="ugc_ps_health.html">Health Facilities</a></li>
+                                    <li><a href="ugc_ps_sl_icc.html">Internal Complaints Committee</a></li>
+                                    <li><a href="ugc_ps_sl_antiragging.html">Anti Ragging Cell</a></li>
+                                    <li><a href="ugc_ps_sl_equalopportunity.html">Equal Opportunity Cell</a></li>
+                                    <li><a href="ugc_ps_sl_sedg.html">SEDG</a></li>
+                                    <li><a href="ugc_ps_differentlyabled.html">Facilities for Differently Abled</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="ugc_ps_alumni.html">Alumni Association</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">Information Corner <i class="fas fa-angle-right"
+                                        style="float:right; margin-top:4px;"></i></a>
+                                <ul class="dropdown js-exclude-dropdown">
+                                    <li><a href="ugc_ps_rti.html">RTI</a></li>
+                                    <li><a href="ugc_ps_circulars.html">Circulars and Notices</a></li>
+                                    <li><a href="ugc_ps_announcements.html">Announcements</a></li>
+                                    <li><a href="ugc_ps_newsletters.html">Newsletters</a></li>
+                                    <li><a href="ugc_ps_events.html">News, Recent Events & Achievements</a></li>
+                                    <li><a href="#">Job Openings</a></li>
+                                    <li><a href="ugc_ps_studyinindia.html">Admission for International Students</a></li>
+                                    <li><a href="#">Details and Location Map</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
